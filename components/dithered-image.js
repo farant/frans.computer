@@ -32,7 +32,8 @@ class DitheredImage extends HTMLElement {
 		this.ignore_next_resize_ = false;
 
 		try {
-		this.worker_ = new Worker("/js/ditherworker.js");
+			// TODO: need to handle differently for file:// protocol
+		this.worker_ = new Worker("js/ditherworker.js");
 		} catch (e) {
 			console.error(`
 To use the <dithered-image> component you need to host the service
