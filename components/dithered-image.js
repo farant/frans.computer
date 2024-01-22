@@ -35,13 +35,15 @@ class DitheredImage extends HTMLElement {
 			// TODO: need to handle differently for file:// protocol
 		this.worker_ = new Worker("js/ditherworker.js");
 		} catch (e) {
-			console.error(`
+			const message = `
 To use the <dithered-image> component you need to host the service
 worker on your local domain.
 
 copy the contents of ${HOST_DOMAIN}/js/ditherworker.js to
 /js/ditherworker.js
-`.trim())
+`.trim();
+			console.error(message);
+			alert(message);
 			throw e
 		}
 
@@ -248,7 +250,7 @@ copy the contents of ${HOST_DOMAIN}/js/ditherworker.js to
 		this.image_loading_ = true;
 		const image = new Image();
 		image.src = this.getAttribute("src");
-		this.has_border = this.getAttribute("border") == "true";
+		this.has_border = this.getAttribute("border") != "false";
 
 		let decoding_border = null;
 		let border_image = null;
