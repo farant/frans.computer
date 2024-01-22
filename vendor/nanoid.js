@@ -1,5 +1,6 @@
 let alphabet_without_symbols = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-let ID_LENGTH = 22;
+// A conservative value for this would be ~22
+let ID_LENGTH = 16;
 
 export let random = bytes => crypto.getRandomValues(new Uint8Array(bytes))
 
