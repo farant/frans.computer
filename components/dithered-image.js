@@ -257,6 +257,7 @@ copy the contents of ${HOST_DOMAIN}/js/ditherworker.js to
 
 		if (this.has_border) {
 			border_image = new Image();
+			border_image.crossOrigin = "anonymous"
 			//border 2
 			//border_image.src = "/uploads/RXDcTMa2mNZOz6lF6wcoa";
 
