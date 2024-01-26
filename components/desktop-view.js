@@ -34,11 +34,30 @@ class DesktopView extends HTMLElement {
 
 		const processed_nodes = {}
 
-		this.shadowRoot.querySelector('.desktop-view')
-			.addEventListener('dragover', function(event) {
-				// Prevent default to allow drop
-				event.preventDefault();
-			});
+		const desktop_view = this.shadowRoot.querySelector('.desktop-view')
+		desktop_view.addEventListener('dragover', function(event) {
+			// Prevent default to allow drop
+			event.preventDefault();
+		});
+
+		desktop_view.addEventListener('drop', function(event) {
+			let item = this.dragging_item
+			if (!item) return
+
+			event.preventDefault();
+
+			let mouse_offset_x = 0
+			let mouse_offset_y = 0
+			if (processed_nodes[item].mouse_offset_x) {
+				mouse_offset_x = processed_nodes[item].mouse_offset_x
+			}
+			if (processed_nodes[item].mouse_offset_y) {
+				mouse_offset_y = processed_nodes[item].mouse_offset_y
+			}
+
+			item.style.left = (event.clientX - mouse_offset_x) + "px"
+			item.style.top = (event.clientY - mouse_offset_y) + "px"
+		})
 
 
 		const main_slot = this.shadowRoot.querySelector("slot")
@@ -76,20 +95,8 @@ class DesktopView extends HTMLElement {
 
 					processed_nodes[item].mouse_offset_x = mouse_x - target_x
 					processed_nodes[item].mouse_offset_y = mouse_y - target_y
-				})
 
-				item.addEventListener("drop", (event) => {
-					let mouse_offset_x = 0
-					let mouse_offset_y = 0
-					if (processed_nodes[item].mouse_offset_x) {
-						mouse_offset_x = processed_nodes[item].mouse_offset_x
-					}
-					if (processed_nodes[item].mouse_offset_y) {
-						mouse_offset_y = processed_nodes[item].mouse_offset_y
-					}
-
-					item.style.left = (event.clientX - mouse_offset_x) + "px"
-					item.style.top = (event.clientY - mouse_offset_y) + "px"
+					this.dragging_item = item;
 				})
 			}
 		})
