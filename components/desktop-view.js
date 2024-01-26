@@ -34,6 +34,13 @@ class DesktopView extends HTMLElement {
 
 		const processed_nodes = {}
 
+		this.shadowRoot.querySelector('.desktop-view')
+			.addEventListener('dragover', function(event) {
+				// Prevent default to allow drop
+				event.preventDefault();
+			});
+
+
 		const main_slot = this.shadowRoot.querySelector("slot")
 		main_slot.addEventListener("slotchange", () => {
 			let items = main_slot.assignedNodes()
@@ -52,7 +59,7 @@ class DesktopView extends HTMLElement {
 				}
 
 				console.log("processing item", item)
-				processed_nodes[item] = { }
+				processed_nodes[item] = {}
 
 				item.style.position = "absolute"
 				item.setAttribute("draggable", "true")
@@ -71,7 +78,7 @@ class DesktopView extends HTMLElement {
 					processed_nodes[item].mouse_offset_y = mouse_y - target_y
 				})
 
-				item.addEventListener("dragend", (event) => {
+				item.addEventListener("drop", (event) => {
 					let mouse_offset_x = 0
 					let mouse_offset_y = 0
 					if (processed_nodes[item].mouse_offset_x) {
