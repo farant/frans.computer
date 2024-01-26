@@ -35,12 +35,12 @@ class DesktopView extends HTMLElement {
 		const processed_nodes = {}
 
 		const desktop_view = this.shadowRoot.querySelector('.desktop-view')
-		desktop_view.addEventListener('dragover', function(event) {
+		desktop_view.addEventListener('dragover', (event) => {
 			// Prevent default to allow drop
 			event.preventDefault();
 		});
 
-		desktop_view.addEventListener('drop', function(event) {
+		desktop_view.addEventListener('drop', (event) => {
 			let item = this.dragging_item
 			if (!item) return
 
@@ -57,8 +57,9 @@ class DesktopView extends HTMLElement {
 
 			item.style.left = (event.clientX - mouse_offset_x) + "px"
 			item.style.top = (event.clientY - mouse_offset_y) + "px"
-		})
 
+			this.dragging_item = null
+		})
 
 		const main_slot = this.shadowRoot.querySelector("slot")
 		main_slot.addEventListener("slotchange", () => {
