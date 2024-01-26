@@ -11,9 +11,6 @@ desktop_view_css.replaceSync(`
 	border: 5px solid black;
 }
 
-.dragging {
-	display: none;
-}
 `)
 
 const desktop_view_html = document.createElement("template")
@@ -35,6 +32,16 @@ class DesktopView extends HTMLElement {
 			desktop_view_html.content.cloneNode(true)
 		)
 		this.shadowRoot.adoptedStyleSheets = [desktop_view_css]
+
+		let desktop_dragging_style = document.createElement("style")
+		desktop_dragging_style.innerHTML = `
+			.desktop-dragging {
+				display: none;
+			}
+		`
+
+		document.body.appendChild(desktop_dragging_style)
+
 
 		const processed_nodes = {}
 
@@ -103,11 +110,11 @@ class DesktopView extends HTMLElement {
 
 					this.dragging_item = item;
 
-					item.classList.add("dragging")
+					item.classList.add("desktop-dragging")
 				})
 
 				item.addEventListener("dragend", (event) => {
-					item.classList.remove("dragging")
+					item.classList.remove("desktop-dragging")
 				})
 			}
 		})
