@@ -25,7 +25,32 @@ class DesktopView extends HTMLElement {
 		this.shadowRoot.appendChild(
 			desktop_view_html.content.cloneNode(true)
 		)
-		this.shadowRoot.adoptedStyleSheets= [desktop_view_css]
+		this.shadowRoot.adoptedStyleSheets = [desktop_view_css]
+
+		const processed_nodes = {}
+
+		const main_slot = this.shadowRoot.querySelector("slot")
+		main_slot.addEventListener("slotchange", () => {
+			let items = main_slot.assignedNodes()
+			for (let item of items) {
+				if (processed_nodes[item]) {
+					continue
+				}
+
+				if (item.nodeType === Node.TEXT_NODE) {
+					// TODO: Wrap it in a div?
+					continue
+				} else if (item.nodeType !== Node.ELEMENT_NODE) {
+					console.log("Unknown node type: '" +item.nodeType + "'")
+					continue
+				}
+
+				processed_nodes[item] = true
+
+				item.style.position = "absolute"
+				item.setAttribute("draggable", "true")
+			}
+		})
 	}
 }
 
