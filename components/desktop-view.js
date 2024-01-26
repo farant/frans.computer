@@ -20,6 +20,18 @@ desktop_view_html.innerHTML = `
 </div>
 `
 
+let desktop_dragging_style = document.createElement("style")
+desktop_dragging_style.innerHTML = `
+	.desktop-dragging {
+		display: none;
+	}
+`
+
+document.body.appendChild(desktop_dragging_style)
+
+console.log(desktop_dragging_style)
+
+
 class DesktopView extends HTMLElement {
 
 	increment = 20
@@ -32,15 +44,6 @@ class DesktopView extends HTMLElement {
 			desktop_view_html.content.cloneNode(true)
 		)
 		this.shadowRoot.adoptedStyleSheets = [desktop_view_css]
-
-		let desktop_dragging_style = document.createElement("style")
-		desktop_dragging_style.innerHTML = `
-			.desktop-dragging {
-				display: none;
-			}
-		`
-
-		document.body.appendChild(desktop_dragging_style)
 
 
 		const processed_nodes = {}
