@@ -52,11 +52,38 @@ class DesktopView extends HTMLElement {
 				}
 
 				console.log("processing item", item)
-				processed_nodes[item] = true
+				processed_nodes[item] = { }
 
 				item.style.position = "absolute"
 				item.setAttribute("draggable", "true")
 				this.initialize_position(item)
+
+				item.addEventListener("dragstart", (event) => {
+					// x and y position of target
+					const target = item
+					const rect = target.getBoundingClientRect()
+					const target_x = rect.x
+					const target_y = rect.y
+					const mouse_x = event.clientX
+					const mouse_y = event.clientY
+
+					processed_nodes[item].mouse_offset_x = mouse_x - target_x
+					processed_nodes[item].mouse_offset_y = mouse_y - target_y
+				})
+
+				item.addEventListener("dragend", (event) => {
+					let mouse_offset_x = 0
+					let mouse_offset_y = 0
+					if (processed_nodes[item].mouse_offset_x) {
+						mouse_offset_x = processed_nodes[item].mouse_offset_x
+					}
+					if (processed_nodes[item].mouse_offset_y) {
+						mouse_offset_y = processed_nodes[item].mouse_offset_y
+					}
+
+					item.style.left = (event.clientX - mouse_offset_x) + "px"
+					item.style.top = (event.clientY - mouse_offset_y) + "px"
+				})
 			}
 		})
 	}
