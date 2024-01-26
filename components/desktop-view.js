@@ -23,7 +23,7 @@ desktop_view_html.innerHTML = `
 let desktop_dragging_style = document.createElement("style")
 desktop_dragging_style.innerHTML = `
 	.desktop-dragging {
-		display: none;
+		opacity: 0;
 	}
 `
 
