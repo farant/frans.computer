@@ -34,6 +34,7 @@ class DesktopView extends HTMLElement {
 			let items = main_slot.assignedNodes()
 			for (let item of items) {
 				if (processed_nodes[item]) {
+					console.log("skipping item", item)
 					continue
 				}
 
@@ -41,10 +42,11 @@ class DesktopView extends HTMLElement {
 					// TODO: Wrap it in a div?
 					continue
 				} else if (item.nodeType !== Node.ELEMENT_NODE) {
-					console.log("Unknown node type: '" +item.nodeType + "'")
+					console.log("Unknown node type: '" + item.nodeType + "'")
 					continue
 				}
 
+				console.log("processing item", item)
 				processed_nodes[item] = true
 
 				item.style.position = "absolute"
