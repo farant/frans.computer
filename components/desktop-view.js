@@ -25,7 +25,7 @@ class DesktopView extends HTMLElement {
 		this.shadowRoot.appendChild(
 			desktop_view_html.content.cloneNode(true)
 		)
-		this.shadowRoot.adoptedStyleSheets([desktop_view_css])
+		this.shadowRoot.adoptedStyleSheets= [desktop_view_css]
 	}
 }
 
