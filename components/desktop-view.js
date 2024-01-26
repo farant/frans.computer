@@ -10,6 +10,10 @@ desktop_view_css.replaceSync(`
 	box-sizing: border-box;
 	border: 5px solid black;
 }
+
+.dragging {
+	display: none;
+}
 `)
 
 const desktop_view_html = document.createElement("template")
@@ -98,6 +102,12 @@ class DesktopView extends HTMLElement {
 					processed_nodes[item].mouse_offset_y = mouse_y - target_y
 
 					this.dragging_item = item;
+
+					item.classList.add("dragging")
+				})
+
+				item.addEventListener("dragend", (event) => {
+					item.classList.remove("dragging")
 				})
 			}
 		})
