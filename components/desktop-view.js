@@ -101,7 +101,6 @@ class DesktopView extends HTMLElement {
 				this.initialize_position(item)
 
 				item.addEventListener("dragstart", (event) => {
-					event.preventDefault();
 					// x and y position of target
 					const target = item
 					const rect = target.getBoundingClientRect()
@@ -116,11 +115,13 @@ class DesktopView extends HTMLElement {
 					this.dragging_item = item;
 
 					item.classList.add("desktop-dragging")
+
+					event.preventDefault();
 				})
 
 				item.addEventListener("dragend", (event) => {
-					event.preventDefault();
 					item.classList.remove("desktop-dragging")
+					event.preventDefault();
 				})
 			}
 		})
