@@ -20,6 +20,11 @@ desktop_view_html.innerHTML = `
 `
 
 class DesktopView extends HTMLElement {
+
+	increment = 20
+	last_x = 0
+	last_y = 0
+
 	connectedCallback() {
 		this.attachShadow({ mode: "open" })
 		this.shadowRoot.appendChild(
@@ -51,9 +56,19 @@ class DesktopView extends HTMLElement {
 
 				item.style.position = "absolute"
 				item.setAttribute("draggable", "true")
+				this.initialize_position(item)
 			}
 		})
 	}
+
+	initialize_position(item) {
+		this.last_x += this.increment
+		this.last_y += this.increment
+
+		item.style.left = this.last_x + "px"
+		item.style.top = this.last_y + "px"
+	}
+
 }
 
 window.customElements.define('desktop-view', DesktopView)
