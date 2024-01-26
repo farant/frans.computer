@@ -23,8 +23,8 @@ desktop_view_html.innerHTML = `
 let desktop_dragging_style = document.createElement("style")
 desktop_dragging_style.innerHTML = `
 	.desktop-dragging {
-		left: -10000px !important;
-		top: -10000px !important;
+		margin-left: -9999px !important;
+		margin-top: -9999px !important;
 	}
 `
 
