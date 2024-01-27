@@ -1,4 +1,18 @@
 
+async function sha256(message) {
+	// Encode the string into bytes
+	const msgBuffer = new TextEncoder().encode(message);
+
+	// Hash the message
+	const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+
+	// Convert the hash to a readable format
+	const hashArray = Array.from(new Uint8Array(hashBuffer));
+	const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+	return hashHex;
+}
+
 const desktop_view_css = new CSSStyleSheet();
 desktop_view_css.replaceSync(`
 .desktop-view {
@@ -47,7 +61,7 @@ class DesktopView extends HTMLElement {
 		this.shadowRoot.adoptedStyleSheets = [desktop_view_css]
 
 
-		const processed_nodes = {}
+		this.processed_nodes = {}
 
 		const desktop_view = this.shadowRoot.querySelector('.desktop-view')
 		desktop_view.addEventListener('dragover', (event) => {
@@ -63,24 +77,28 @@ class DesktopView extends HTMLElement {
 
 			let mouse_offset_x = 0
 			let mouse_offset_y = 0
-			if (processed_nodes[item].mouse_offset_x) {
-				mouse_offset_x = processed_nodes[item].mouse_offset_x
+			if (this.processed_nodes[item].mouse_offset_x) {
+				mouse_offset_x = this.processed_nodes[item].mouse_offset_x
 			}
-			if (processed_nodes[item].mouse_offset_y) {
-				mouse_offset_y = processed_nodes[item].mouse_offset_y
+			if (this.processed_nodes[item].mouse_offset_y) {
+				mouse_offset_y = this.processed_nodes[item].mouse_offset_y
 			}
 
-			item.style.left = (event.clientX - mouse_offset_x) + "px"
-			item.style.top = (event.clientY - mouse_offset_y) + "px"
+			let x = event.clientX - mouse_offset_x
+			let y = event.clientY - mouse_offset_y
+			item.style.left = x + "px"
+			item.style.top = y + "px"
+
+			this.set_position(item, x, y)
 
 			this.dragging_item = null
 		})
 
 		const main_slot = this.shadowRoot.querySelector("slot")
-		main_slot.addEventListener("slotchange", () => {
+		main_slot.addEventListener("slotchange", async () => {
 			let items = main_slot.assignedNodes()
 			for (let item of items) {
-				if (processed_nodes[item]) {
+				if (this.processed_nodes[item]) {
 					console.log("skipping item", item)
 					continue
 				}
@@ -94,7 +112,11 @@ class DesktopView extends HTMLElement {
 				}
 
 				console.log("processing item", item)
-				processed_nodes[item] = {}
+				this.processed_nodes[item] = {}
+				let id = await this.get_id(item)
+				item.setAttribute('id', id)
+				this.processed_nodes[id] = this.processed_nodes[item]
+				this.processed_nodes[item].id = id
 
 				item.style.position = "absolute"
 				item.setAttribute("draggable", "true")
@@ -109,8 +131,8 @@ class DesktopView extends HTMLElement {
 					const mouse_x = event.clientX
 					const mouse_y = event.clientY
 
-					processed_nodes[item].mouse_offset_x = mouse_x - target_x
-					processed_nodes[item].mouse_offset_y = mouse_y - target_y
+					this.processed_nodes[item].mouse_offset_x = mouse_x - target_x
+					this.processed_nodes[item].mouse_offset_y = mouse_y - target_y
 
 					this.dragging_item = item;
 
@@ -124,13 +146,61 @@ class DesktopView extends HTMLElement {
 		})
 	}
 
-	initialize_position(item) {
-		this.last_x += this.increment
-		this.last_y += this.increment
+	async get_id(item) {
+		let id = item.getAttribute("id")
+		if (!id) {
+			id = await sha256(item.outerHTML)
+		}
 
-		item.style.left = this.last_x + "px"
-		item.style.top = this.last_y + "px"
+		return id
 	}
+
+	get_form_id() {
+		let desktop = this.querySelector('desktop-view')
+		id = desktop.getAttribute("id")
+
+		let whole_id = `desktop-view:${id}-`
+			+ window.location.origin
+			+ window.location.pathname
+
+		return whole_id
+	}
+
+	set_position(item, x, y) {
+		let id = item.getAttribute("id")
+
+		localStorage.setItem(
+			`${this.get_form_id()}-${id}`,
+			JSON.stringify({ x, y })
+		)
+	}
+
+	load_position(item) {
+		let id = item.getAttribute("id")
+
+		try {
+			return JSON.parse(localStorage.getItem(
+				`${this.get_form_id()}-${id}`
+			))
+		} catch {
+			return null
+		}
+	}
+
+	initialize_position(item) {
+		let position = this.load_position(item)
+
+		if (position) {
+			item.style.left = position.x + "px"
+			item.style.top = position.y + "px"
+		} else {
+			this.last_x += this.increment
+			this.last_y += this.increment
+			item.style.left = this.last_x + "px"
+			item.style.top = this.last_y + "px"
+		}
+	}
+
 
 }
 
