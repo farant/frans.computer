@@ -70,7 +70,7 @@ class DesktopView extends HTMLElement {
 		});
 
 		desktop_view.addEventListener('drop', async (event) => {
-			let drag_preview_offset = 10
+			let drag_preview_offset = 20
 			let item = this.dragging_item
 			let node = await this.get_processed_node(item)
 			if (!item || !node) return
@@ -86,7 +86,7 @@ class DesktopView extends HTMLElement {
 				mouse_offset_y = node.mouse_offset_y
 			}
 
-			let x = (event.clientX - mouse_offset_x) - drag_preview_offset
+			let x = (event.clientX - mouse_offset_x)
 			let y = (event.clientY - mouse_offset_y) - drag_preview_offset
 			item.style.left = x + "px"
 			item.style.top = y + "px"
