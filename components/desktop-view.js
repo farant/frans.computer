@@ -88,8 +88,21 @@ class DesktopView extends HTMLElement {
       const container_x = event.clientX - container_rect.left;
       const container_y = event.clientY - container_rect.top;
 
-      let x = container_x - mouse_offset_x;
-      let y = container_y - mouse_offset_y; //- drag_preview_offset
+      // Get the computed style of the container to access the border width
+      const container_style = window.getComputedStyle(container);
+      const border_left_width = parseInt(
+        container_style.getPropertyValue("border-left-width"),
+        10
+      );
+      const border_top_width = parseInt(
+        container_style.getPropertyValue("border-top-width"),
+        10
+      );
+
+      // Adjust the container_x and container_y by subtracting the border widths
+      let x = container_x - mouse_offset_x - border_left_width;
+      let y = container_y - mouse_offset_y - border_top_width; //- drag_preview_offset
+
       item.style.left = x + "px";
       item.style.top = y + "px";
 
