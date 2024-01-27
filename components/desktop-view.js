@@ -99,17 +99,18 @@ class DesktopView extends HTMLElement {
 		main_slot.addEventListener("slotchange", async () => {
 			let items = main_slot.assignedNodes()
 			for (let item of items) {
-				let node = await this.get_processed_node(item)
-				if (node) {
-					console.log("skipping item", item)
-					continue
-				}
-
 				if (item.nodeType === Node.TEXT_NODE) {
 					// TODO: Wrap it in a div?
+					// TODO: Ignore text nodes that are all whitespace?
 					continue
 				} else if (item.nodeType !== Node.ELEMENT_NODE) {
 					console.log("Unknown node type: '" + item.nodeType + "'")
+					continue
+				}
+
+				let node = await this.get_processed_node(item)
+				if (node) {
+					console.log("skipping item", item)
 					continue
 				}
 
