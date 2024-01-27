@@ -157,7 +157,7 @@ class DesktopView extends HTMLElement {
 
 	get_form_id() {
 		let desktop = this.shadowRoot.querySelector('.desktop-view')
-		id = desktop.getAttribute("id")
+		let id = desktop.getAttribute("id")
 
 		let whole_id = `desktop-view:${id}-`
 			+ window.location.origin
