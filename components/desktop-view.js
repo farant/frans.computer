@@ -66,7 +66,7 @@ class DesktopView extends HTMLElement {
     });
 
     desktop_view.addEventListener("drop", async (event) => {
-      let drag_preview_offset = 20;
+      let drag_preview_offset = 15;
       let item = this.dragging_item;
       let node = await this.get_processed_node(item);
       if (!item || !node) return;
