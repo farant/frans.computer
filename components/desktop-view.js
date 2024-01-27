@@ -69,19 +69,20 @@ class DesktopView extends HTMLElement {
 			event.preventDefault();
 		});
 
-		desktop_view.addEventListener('drop', (event) => {
+		desktop_view.addEventListener('drop', async (event) => {
 			let item = this.dragging_item
-			if (!item) return
+			let node = await this.get_processed_node(item)
+			if (!item || !node) return
 
 			event.preventDefault();
 
 			let mouse_offset_x = 0
 			let mouse_offset_y = 0
-			if (this.processed_nodes[item].mouse_offset_x) {
-				mouse_offset_x = this.processed_nodes[item].mouse_offset_x
+			if (node.mouse_offset_x) {
+				mouse_offset_x = node.mouse_offset_x
 			}
-			if (this.processed_nodes[item].mouse_offset_y) {
-				mouse_offset_y = this.processed_nodes[item].mouse_offset_y
+			if (node.mouse_offset_y) {
+				mouse_offset_y = node.mouse_offset_y
 			}
 
 			let x = event.clientX - mouse_offset_x
@@ -98,7 +99,8 @@ class DesktopView extends HTMLElement {
 		main_slot.addEventListener("slotchange", async () => {
 			let items = main_slot.assignedNodes()
 			for (let item of items) {
-				if (this.processed_nodes[item]) {
+				let node = await this.get_processed_node(item)
+				if (node) {
 					console.log("skipping item", item)
 					continue
 				}
@@ -111,18 +113,18 @@ class DesktopView extends HTMLElement {
 					continue
 				}
 
+				node = await this.set_processed_node(item)
+
 				console.log("processing item", item)
-				this.processed_nodes[item] = {}
 				let id = await this.get_id(item)
 				item.setAttribute('id', id)
-				this.processed_nodes[id] = this.processed_nodes[item]
-				this.processed_nodes[item].id = id
+				node.id = id
 
 				item.style.position = "absolute"
 				item.setAttribute("draggable", "true")
 				this.initialize_position(item)
 
-				item.addEventListener("dragstart", (event) => {
+				item.addEventListener("dragstart", async (event) => {
 					// x and y position of target
 					const target = item
 					const rect = target.getBoundingClientRect()
@@ -131,8 +133,10 @@ class DesktopView extends HTMLElement {
 					const mouse_x = event.clientX
 					const mouse_y = event.clientY
 
-					this.processed_nodes[item].mouse_offset_x = mouse_x - target_x
-					this.processed_nodes[item].mouse_offset_y = mouse_y - target_y
+					let node = await this.get_processed_node(item)
+
+					node.mouse_offset_x = mouse_x - target_x
+					node.mouse_offset_y = mouse_y - target_y
 
 					this.dragging_item = item;
 
@@ -153,6 +157,18 @@ class DesktopView extends HTMLElement {
 		}
 
 		return id
+	}
+
+	async set_processed_node(item) {
+		let id = await this.get_id(item)
+		this.processed_nodes[id] = {}
+
+		return this.processed_nodes[id]
+	}
+
+	async get_processed_node(item) {
+		let id = await this.get_id(item)
+		return this.processed_nodes[id] || null
 	}
 
 	get_form_id() {
@@ -202,8 +218,6 @@ class DesktopView extends HTMLElement {
 			item.style.top = this.last_y + "px"
 		}
 	}
-
-
 }
 
 window.customElements.define('desktop-view', DesktopView)
