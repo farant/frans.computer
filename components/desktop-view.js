@@ -115,13 +115,10 @@ class DesktopView extends HTMLElement {
 					this.dragging_item = item;
 
 					item.classList.add("desktop-dragging")
-
-					event.preventDefault();
 				})
 
 				item.addEventListener("dragend", (event) => {
 					item.classList.remove("desktop-dragging")
-					event.preventDefault();
 				})
 			}
 		})
