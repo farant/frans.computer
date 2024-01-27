@@ -5,11 +5,28 @@
 		<script type="module" src="https://frans.computer/components.js"></script>
 </head>
 <body>
+<style>
+.card {
+	background: #ddd;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
+	box-sizing: border-box;
+	padding: 2em;
+}
+body {
+	background-image: url("https://frans.computer/images/tile_crystal2.png");
+}
+</style>
 	<desktop-view>
 		<random-nanoid></random-nanoid>
 		<div style="max-width: 500px;">
 			<dithered-image src="test-image.jpg"></dithered-image>
 		</div>
+		<p class="card">
+			So this is some text or whatever that you can drag around.
+		</p>
 	</desktop-view>
 </body>
 </html>
