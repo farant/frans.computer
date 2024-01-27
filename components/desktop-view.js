@@ -86,8 +86,14 @@ class DesktopView extends HTMLElement {
 				mouse_offset_y = node.mouse_offset_y
 			}
 
-			let x = (event.clientX - mouse_offset_x)
-			let y = (event.clientY - mouse_offset_y) - drag_preview_offset
+			let container = this.shadowRoot.querySelector('.desktop-view')
+
+			// get clientX relative to container
+			let container_x = event.clientX - container.offsetLeft
+			let container_y = event.clientY - container.offsetTop
+			
+			let x = (container_x - mouse_offset_x)
+			let y = (container_y - mouse_offset_y) //- drag_preview_offset
 			item.style.left = x + "px"
 			item.style.top = y + "px"
 
