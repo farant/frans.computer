@@ -156,7 +156,7 @@ class DesktopView extends HTMLElement {
 	}
 
 	get_form_id() {
-		let desktop = this.querySelector('desktop-view')
+		let desktop = this.querySelector('.desktop-view')
 		id = desktop.getAttribute("id")
 
 		let whole_id = `desktop-view:${id}-`
