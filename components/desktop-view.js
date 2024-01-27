@@ -101,7 +101,8 @@ class DesktopView extends HTMLElement {
 
       // Adjust the container_x and container_y by subtracting the border widths
       let x = container_x - mouse_offset_x - border_left_width;
-      let y = container_y - mouse_offset_y - border_top_width; //- drag_preview_offset
+      let y =
+        container_y - mouse_offset_y - border_top_width - drag_preview_offset;
 
       item.style.left = x + "px";
       item.style.top = y + "px";
