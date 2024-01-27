@@ -169,6 +169,7 @@ class DesktopView extends HTMLElement {
 	set_position(item, x, y) {
 		let id = item.getAttribute("id")
 
+		console.log("setting position", `${this.get_form_id()}-${id}`, x, y)
 		localStorage.setItem(
 			`${this.get_form_id()}-${id}`,
 			JSON.stringify({ x, y })
@@ -179,6 +180,7 @@ class DesktopView extends HTMLElement {
 		let id = item.getAttribute("id")
 
 		try {
+			console.log("getting position", `${this.get_form_id()}-${id}`)
 			return JSON.parse(localStorage.getItem(
 				`${this.get_form_id()}-${id}`
 			))
