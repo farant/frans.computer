@@ -86,8 +86,8 @@ class DesktopView extends HTMLElement {
 				mouse_offset_y = node.mouse_offset_y
 			}
 
-			let x = event.clientX - mouse_offset_x - drag_preview_offset
-			let y = event.clientY - mouse_offset_y - drag_preview_offset
+			let x = (event.clientX - mouse_offset_x) - drag_preview_offset
+			let y = (event.clientY - mouse_offset_y) - drag_preview_offset
 			item.style.left = x + "px"
 			item.style.top = y + "px"
 
