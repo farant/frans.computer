@@ -124,6 +124,14 @@ class DesktopView extends HTMLElement {
           continue;
         }
 
+        if (item.parentNode.classList.contains("desktop-draggable-container")) {
+          console.log(
+            "Item is already wrapped in a desktop-draggable-container",
+            item
+          );
+          continue;
+        }
+
         if (!item.classList.contains("desktop-draggable-container")) {
           const wrapper = document.createElement("div");
           wrapper.classList.add("desktop-draggable-container");
