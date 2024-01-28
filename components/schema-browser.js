@@ -80,8 +80,10 @@ class SchemaBrowser extends HTMLElement {
         });
       }
 
-      //this.schemas[schema.getAttribute("name")] = schema;
+      schema_dictionary[name] = schema;
     }
+
+    return schema_dictionary;
   }
 
   render() {

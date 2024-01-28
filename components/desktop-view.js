@@ -24,6 +24,7 @@ desktop_view_css.replaceSync(`
 	right: 0;
 	box-sizing: border-box;
 	border: 5px solid black;
+  overflow: hidden;
 }
 
 `);
