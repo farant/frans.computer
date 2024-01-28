@@ -101,8 +101,7 @@ class DesktopView extends HTMLElement {
 
       // Adjust the container_x and container_y by subtracting the border widths
       let x = container_x - mouse_offset_x - border_left_width;
-      let y =
-        container_y - mouse_offset_y - border_top_width - drag_preview_offset;
+      let y = container_y - mouse_offset_y - border_top_width; // - drag_preview_offset;
 
       item.style.left = x + "px";
       item.style.top = y + "px";
@@ -123,6 +122,13 @@ class DesktopView extends HTMLElement {
         } else if (item.nodeType !== Node.ELEMENT_NODE) {
           console.log("Unknown node type: '" + item.nodeType + "'");
           continue;
+        }
+
+        if (!item.classList.contains("desktop-draggable-container")) {
+          const wrapper = document.createElement("div");
+          wrapper.classList.add("desktop-draggable-container");
+          item.parentNode.insertBefore(wrapper, item);
+          wrapper.appendChild(item);
         }
 
         let node = await this.get_processed_node(item);
