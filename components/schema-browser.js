@@ -18,6 +18,10 @@ schema_browser_html.innerHTML = `
 `;
 
 class SchemaBrowser extends HTMLElement {
+  state = {
+    current_schema_view: null,
+  };
+
   connectedCallback() {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(schema_browser_html.content.cloneNode(true));
@@ -25,6 +29,7 @@ class SchemaBrowser extends HTMLElement {
 
     const observer = new MutationObserver((mutationsList, observer) => {
       // TODO: Make this smart
+      console.log("Rendering");
       this.render();
     });
 
@@ -104,15 +109,19 @@ class SchemaBrowser extends HTMLElement {
 
     sidebar.innerHTML = schema_list_html;
 
-    let first_schema = schemas_array[0];
-
-    this.render_schema_view(first_schema);
+    if (this.state.current_schema_view) {
+      this.render_schema_view(schemas[this.state.current_schema_view]);
+    } else {
+      let first_schema = schemas_array[0];
+      this.render_schema_view(first_schema);
+    }
 
     let schema_links = this.shadowRoot.querySelectorAll(".schema-link");
     for (let link of schema_links) {
       link.addEventListener("click", (event) => {
         let schema_name = event.target.getAttribute("data-schema");
         let schema = schemas[schema_name];
+        this.state.current_schema_view = schema_name;
         this.render_schema_view(schema);
       });
     }
