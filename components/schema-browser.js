@@ -89,7 +89,7 @@ class SchemaBrowser extends HTMLElement {
 
   render() {
     let schemas = this.get_schemas();
-    schemas_array = Object.values(schemas);
+    let schemas_array = Object.values(schemas);
     schemas_array.sort((a, b) => {
       return a.name.localeCompare(b.name);
     });
