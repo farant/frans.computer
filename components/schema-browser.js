@@ -45,6 +45,7 @@ class SchemaBrowser extends HTMLElement {
       childList: true,
       subtree: true,
     });
+
     this.render();
   }
 
