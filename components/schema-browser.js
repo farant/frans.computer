@@ -24,6 +24,7 @@ class SchemaBrowser extends HTMLElement {
     this.shadowRoot.adoptedStyleSheets = [schema_browser_css];
 
     const observer = new MutationObserver((mutationsList, observer) => {
+      console.log("Mutation observer called", mutationsList);
       for (const mutation of mutationsList) {
         if (mutation.type === "childList" || mutation.type === "attributes") {
           const entitySchemaElements = Array.from(
