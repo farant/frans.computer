@@ -41,6 +41,9 @@ desktop_dragging_style.innerHTML = `
 		transition: 0.01s;
 		transform: translateX(-9999px);
 	}
+  .desktop-dragable-container {
+    width: max-content;
+  }
 `;
 
 document.body.appendChild(desktop_dragging_style);
