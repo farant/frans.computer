@@ -119,8 +119,10 @@ class SchemaBrowser extends HTMLElement {
     let schema_links = this.shadowRoot.querySelectorAll(".schema-link");
     for (let link of schema_links) {
       link.addEventListener("click", (event) => {
-        let schema_name = event.target.getAttribute("data-schema");
+        console.log("Clicked link", event.target);
+        let schema_name = link.getAttribute("data-schema");
         let schema = schemas[schema_name];
+        console.log(schema);
         this.state.current_schema_view = schema_name;
         this.render_schema_view(schema);
       });
