@@ -60,7 +60,7 @@ class SchemaBrowser extends HTMLElement {
         continue;
       }
 
-      let schema = {
+      let schema_data = {
         name,
         fields: [],
       };
@@ -75,13 +75,13 @@ class SchemaBrowser extends HTMLElement {
         field_name = field_name.replace(/^-+/, "");
         field_name = field_name.replace(/-+$/, "");
 
-        schema.fields.push({
+        schema_data.fields.push({
           name: field_name,
           raw_name: raw_field_name.trim(),
         });
       }
 
-      schema_dictionary[name] = schema;
+      schema_dictionary[name] = schema_data;
     }
 
     return schema_dictionary;
