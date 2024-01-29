@@ -70,8 +70,20 @@ class RenderEntityCollection extends HTMLElement {
 
     console.log("Elements", elements);
 
+    let relative_node = this;
+
+    if (
+      this.parentNode &&
+      this.parentNode.classList.contains("desktop-draggable-container")
+    ) {
+      relative_node = this.parentNode;
+    }
+
     for (let i = elements.length - 1; i >= 0; i--) {
-      this.parentNode.insertBefore(elements[i], this.nextSibling);
+      relative_node.parentNode.insertBefore(
+        elements[i],
+        relative_node.nextSibling
+      );
     }
   }
 }
