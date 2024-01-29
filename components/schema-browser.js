@@ -58,7 +58,7 @@ class SchemaBrowser extends HTMLElement {
   get_schemas() {
     let schema_dictionary = {};
 
-    let schemas = this.querySelectorAll(document, "entity-schema");
+    let schemas = this.query_including_shadow_root(document, "entity-schema");
     for (let schema of schemas) {
       let name = schema.getAttribute("name");
       if (!name) {
