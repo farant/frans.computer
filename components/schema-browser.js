@@ -77,8 +77,8 @@ class SchemaBrowser extends HTMLElement {
       console.log(fields);
 
       for (let field of fields) {
-        let raw_field_name = field.innerText;
-        console.log(field, field.innerText);
+        let raw_field_name = field.get_text();
+        console.log(field, field.get_text();
         let field_name = raw_field_name.trim().toLowerCase();
         field_name = field_name.replace(/\W+/g, "-");
         field_name = field_name.replace(/-+/g, "-");

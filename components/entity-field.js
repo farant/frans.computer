@@ -14,6 +14,10 @@ class EntityField extends HTMLElement {
     this.shadowRoot.adoptedStyleSheets = [entity_field_css];
     this.shadowRoot.appendChild(entity_field_html.content.cloneNode(true));
   }
+
+  get_text() {
+    return this.shadowRoot.querySelector("slot").assignedNodes()[0].textContent;
+  }
 }
 
 window.customElements.define("entity-field", EntityField);
