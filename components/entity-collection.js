@@ -20,12 +20,14 @@ class EntityCollection extends HTMLElement {
   async get_data() {
     let data = [];
 
+    let entity_type = this.getAttribute("type");
+
     let slot = this.shadowRoot.querySelector("slot");
     for (let element of slot.assignedElements()) {
       if (element.tagName.toLowerCase() === "entity-data") {
         data.push(element.get_data());
       } else if (element.tagName.toLowerCase() === "entity-link") {
-        data.push(...(await element.get_entities()));
+        data.push(...(await element.get_entities(entity_type)));
       }
     }
 
