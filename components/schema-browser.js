@@ -43,10 +43,22 @@ class SchemaBrowser extends HTMLElement {
     this.render();
   }
 
+  query_including_shadow_root(root, selector) {
+    let elements = Array.from(root.querySelectorAll(selector));
+
+    Array.from(root.querySelectorAll("*")).forEach((el) => {
+      if (el.shadowRoot) {
+        elements = elements.concat(queryShadowRoot(el.shadowRoot, selector));
+      }
+    });
+
+    return elements;
+  }
+
   get_schemas() {
     let schema_dictionary = {};
 
-    let schemas = document.querySelectorAll("entity-schema");
+    let schemas = this.querySelectorAll(document, "entity-schema");
     for (let schema of schemas) {
       let name = schema.getAttribute("name");
       if (!name) {
@@ -59,7 +71,7 @@ class SchemaBrowser extends HTMLElement {
         fields: [],
       };
 
-      let fields = schema.querySelectorAll("entity-field");
+      let fields = schema.shadowRoot.querySelectorAll("entity-field");
 
       for (let field of fields) {
         let raw_field_name = field.innerText;
