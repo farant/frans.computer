@@ -112,8 +112,12 @@ class DesktopView extends HTMLElement {
       let x = container_x - mouse_offset_x - border_left_width;
       let y = container_y - mouse_offset_y - border_top_width; // - drag_preview_offset;
 
-      item.style.left = x + "px";
-      item.style.top = y + "px";
+      let container_width = container.offsetWidth;
+      let container_height = container.offsetHeight;
+      let x_percent = (x / container_width) * 100;
+      let y_percent = (y / container_height) * 100;
+      item.style.left = x_percent + "%";
+      item.style.top = y_percent + "%";
 
       this.set_position(item, x, y);
 
