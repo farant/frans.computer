@@ -142,6 +142,7 @@ class DesktopView extends HTMLElement {
           wrapper.classList.add("desktop-draggable-container");
           item.parentNode.insertBefore(wrapper, item);
           wrapper.appendChild(item);
+          continue;
         }
 
         let node = await this.get_processed_node(item);
