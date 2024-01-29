@@ -243,6 +243,7 @@ class DesktopView extends HTMLElement {
       console.log("getting position", `${this.get_form_id()}-${id}`);
       return JSON.parse(localStorage.getItem(`${this.get_form_id()}-${id}`));
     } catch {
+      console.log("error getting position", item);
       return null;
     }
   }
