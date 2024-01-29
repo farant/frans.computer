@@ -140,11 +140,12 @@ class SchemaBrowser extends HTMLElement {
       }
     };
 
-    if (this.shadowRoot.hasEventListener("click", this.clickHandler)) {
-      this.shadowRoot.removeEventListener("click", this.clickHandler);
-    }
+    let schema_browser_container = this.shadowRoot.querySelector(
+      ".schema-browser-container"
+    );
 
-    this.shadowRoot.addEventListener("click", this.clickHandler);
+    schema_browser_container.removeEventListener("click", this.clickHandler);
+    schema_browser_container.addEventListener("click", this.clickHandler);
   }
 
   render_schema_view(schema) {
