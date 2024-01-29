@@ -29,6 +29,18 @@ class SchemaBrowser extends HTMLElement {
 
     const observer = new MutationObserver((mutationsList, observer) => {
       // TODO: Make this smart
+      let filtered = mutationsList.filter((mutation) => {
+        if (
+          mutation.type === "attributes" &&
+          mutation.attributeName === "style"
+        ) {
+          return false;
+        }
+        return true;
+      });
+
+      if (filtered.length === 0) return;
+
       console.log("Rendering", mutationsList);
       this.render();
     });
