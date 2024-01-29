@@ -38,6 +38,7 @@ class SchemaBrowser extends HTMLElement {
       attributes: true,
       childList: true,
       subtree: true,
+      characterData: true,
     });
 
     this.render();
