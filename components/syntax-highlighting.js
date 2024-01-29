@@ -1,5 +1,13 @@
 import { codeToHtml } from "https://esm.run/shiki";
 
+let syntax_highlighting_style = document.createElement("style");
+syntax_highlighting_style.innerHTML = `
+pre[is=syntax-highlighting] > pre {
+  padding: 10px;
+}
+`;
+document.head.appendChild(syntax_highlighting_style);
+
 class SyntaxHighlighting extends HTMLPreElement {
   constructor() {
     super();
@@ -9,7 +17,7 @@ class SyntaxHighlighting extends HTMLPreElement {
   async connectedCallback() {
     this.innerHTML = await codeToHtml(this.innerHTML.trim(), {
       lang: this.getAttribute("lang") || "js",
-      theme: "rose-pine",
+      theme: "solarized-light",
     });
 
     this.style.display = "block";
