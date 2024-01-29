@@ -66,13 +66,11 @@ class DesktopView extends HTMLElement {
 
     const desktop_view = this.shadowRoot.querySelector(".desktop-view");
     desktop_view.addEventListener("dragover", (event) => {
-      console.log("dragover handler", event);
       // This is necessary to allow drop
       event.preventDefault();
     });
 
     desktop_view.addEventListener("drop", async (event) => {
-      console.log("Drop handler", event);
       let drag_preview_offset = 16;
       let item = this.dragging_item;
       let node = await this.get_processed_node(item);
@@ -155,7 +153,6 @@ class DesktopView extends HTMLElement {
 
         node = await this.set_processed_node(item);
 
-        console.log("processing item", item);
         let id = await this.get_id(item);
         item.setAttribute("id", id);
         node.id = id;
@@ -165,8 +162,6 @@ class DesktopView extends HTMLElement {
         this.initialize_position(item);
 
         item.addEventListener("dragstart", async (event) => {
-          console.log("dragstart handler", event);
-
           // x and y position of target
           const target = item;
           const rect = target.getBoundingClientRect();
@@ -186,7 +181,6 @@ class DesktopView extends HTMLElement {
         });
 
         item.addEventListener("dragend", (event) => {
-          console.log("Dragend handler", event);
           item.classList.remove("desktop-dragging");
         });
       }

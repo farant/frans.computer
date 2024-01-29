@@ -5,6 +5,20 @@ schema_browser_css.replaceSync(`
     text-decoration: underline;
     color: blue;
 }
+
+.schema-browser-container {
+    display: grid;
+    grid-template-columns: 150px auto;
+}
+
+.schema-browser-sidebar {
+    grid-column: 1;
+}
+
+.schema-browser-content {
+    grid-column: 2;
+}
+
 `);
 
 const schema_browser_html = document.createElement("template");
@@ -28,7 +42,13 @@ class SchemaBrowser extends HTMLElement {
     this.shadowRoot.adoptedStyleSheets = [schema_browser_css];
 
     const observer = new MutationObserver((mutationsList, observer) => {
-      // TODO: Make this smart
+      // TODO: Make this smarter so that it only is triggered by entity-schema changes
+
+      // If there are too many mutations being triggered (for example
+      // style attribute mutations might happen after click because
+      // of a browser extension) then the click handlers in the
+      // element will never be called. So I want to filter out
+      // some of the noise.
       let filtered = mutationsList.filter((mutation) => {
         if (
           mutation.type === "attributes" &&
@@ -41,7 +61,6 @@ class SchemaBrowser extends HTMLElement {
 
       if (filtered.length === 0) return;
 
-      console.log("Rendering", mutationsList);
       this.render();
     });
 
@@ -87,11 +106,9 @@ class SchemaBrowser extends HTMLElement {
       };
 
       let fields = schema.querySelectorAll("entity-field");
-      console.log(fields);
 
       for (let field of fields) {
         let raw_field_name = field.get_text();
-        console.log(field, field.get_text());
         let field_name = raw_field_name.trim().toLowerCase();
         field_name = field_name.replace(/\W+/g, "-");
         field_name = field_name.replace(/-+/g, "-");
@@ -147,7 +164,6 @@ class SchemaBrowser extends HTMLElement {
 
     this.clickHandler = (event) => {
       let target = event.target;
-      console.log("Click handler called", target);
       if (target.classList.contains("schema-link")) {
         let schema_name = target.getAttribute("data-schema");
         let schema = schemas[schema_name];
