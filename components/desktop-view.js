@@ -75,7 +75,7 @@ class DesktopView extends HTMLElement {
       let node = await this.get_processed_node(item);
       if (!item || !node) return;
 
-      event.preventDefault();
+      //event.preventDefault();
 
       let mouse_offset_x = 0;
       let mouse_offset_y = 0;
