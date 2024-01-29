@@ -1,6 +1,6 @@
 import { codeToHtml } from "https://esm.run/shiki";
 
-class SyntaxHighlighting extends HTMLElement {
+class SyntaxHighlighting extends HTMLPreElement {
   constructor() {
     super();
     this.style.display = "none";
