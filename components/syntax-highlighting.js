@@ -1,4 +1,5 @@
 import { codeToHtml } from "https://esm.run/shiki";
+import { dedent } from "/vendor/dedent.js";
 
 let syntax_highlighting_style = document.createElement("style");
 syntax_highlighting_style.innerHTML = `
@@ -15,7 +16,7 @@ class SyntaxHighlighting extends HTMLPreElement {
   }
 
   async connectedCallback() {
-    this.innerHTML = await codeToHtml(this.innerHTML.trim(), {
+    this.innerHTML = await codeToHtml(dedent(this.innerHTML), {
       lang: this.getAttribute("lang") || "js",
       theme: "solarized-light",
     });
