@@ -42,7 +42,7 @@ desktop_dragging_style.innerHTML = `
 		transition: 0.01s;
 		transform: translateX(-9999px);
 	}
-  .desktop-dragable-container {
+  .desktop-draggable-container {
     width: max-content;
     border: 1px solid red;
   }
