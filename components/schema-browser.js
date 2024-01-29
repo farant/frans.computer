@@ -73,7 +73,7 @@ class SchemaBrowser extends HTMLElement {
         fields: [],
       };
 
-      let fields = schema.shadowRoot.querySelectorAll("entity-field");
+      let fields = schema.querySelectorAll("entity-field");
 
       for (let field of fields) {
         let raw_field_name = field.innerText;
