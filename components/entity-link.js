@@ -30,6 +30,8 @@ class EntityLink extends HTMLElement {
       let response = await fetch(remote_src);
       let text = await response.text();
 
+      console.log("text", text);
+
       const parser = new DOMParser();
       const doc = parser.parseFromString(text, "text/html");
 
@@ -38,6 +40,8 @@ class EntityLink extends HTMLElement {
       let collections = doc.querySelectorAll(
         `entity-collection[type="${entity_type}"]`
       );
+
+      console.log("collections", collections);
 
       for (let collection of collections) {
         let entities = collection.outerHTML;
@@ -55,6 +59,7 @@ class EntityLink extends HTMLElement {
           detached_node.removeChild(detached_node.firstChild);
         }
       }
+      console.log("result", result);
 
       return result;
     } catch (e) {

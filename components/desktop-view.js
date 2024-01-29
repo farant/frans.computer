@@ -57,6 +57,7 @@ class DesktopView extends HTMLElement {
   last_y = 0;
 
   constructor() {
+    super();
     this.style.display = "none";
   }
 
