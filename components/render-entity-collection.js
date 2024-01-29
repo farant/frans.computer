@@ -67,11 +67,11 @@ class RenderEntityCollection extends HTMLElement {
       element.setAttribute("data-output-id", output_id);
     }
 
+    console.log("Elements", elements);
+
     for (let i = elements.length - 1; i >= 0; i--) {
       this.parentNode.insertBefore(elements[i], this.nextSibling);
     }
-
-    //console.log("Elements", elements);
   }
 }
 
