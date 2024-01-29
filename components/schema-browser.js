@@ -48,7 +48,9 @@ class SchemaBrowser extends HTMLElement {
 
     Array.from(root.querySelectorAll("*")).forEach((el) => {
       if (el.shadowRoot) {
-        elements = elements.concat(queryShadowRoot(el.shadowRoot, selector));
+        elements = elements.concat(
+          this.query_including_shadow_root(el.shadowRoot, selector)
+        );
       }
     });
 
