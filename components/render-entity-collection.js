@@ -24,7 +24,7 @@ class RenderEntityCollection extends HTMLElement {
 
   render() {
     let collection = document.querySelector(
-      `entity-data[id="${this.getAttribute("for")}"]`
+      `entity-collection[id="${this.getAttribute("for")}"]`
     );
 
     let data = [];
