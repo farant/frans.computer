@@ -56,6 +56,10 @@ class DesktopView extends HTMLElement {
   last_x = 0;
   last_y = 0;
 
+  constructor() {
+    this.style.display = "none";
+  }
+
   connectedCallback() {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(desktop_view_html.content.cloneNode(true));
@@ -187,6 +191,7 @@ class DesktopView extends HTMLElement {
         });
       }
     });
+    this.style.display = "block";
   }
 
   async get_id(item) {
