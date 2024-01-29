@@ -67,7 +67,7 @@ class DesktopView extends HTMLElement {
     const desktop_view = this.shadowRoot.querySelector(".desktop-view");
     desktop_view.addEventListener("dragover", (event) => {
       // Prevent default to allow drop
-      event.preventDefault();
+      //event.preventDefault();
     });
 
     desktop_view.addEventListener("drop", async (event) => {
