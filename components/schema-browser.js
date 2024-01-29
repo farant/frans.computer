@@ -74,9 +74,11 @@ class SchemaBrowser extends HTMLElement {
       };
 
       let fields = schema.querySelectorAll("entity-field");
+      console.log(fields);
 
       for (let field of fields) {
         let raw_field_name = field.innerText;
+        console.log(field, field.innerText);
         let field_name = raw_field_name.trim().toLowerCase();
         field_name = field_name.replace(/\W+/g, "-");
         field_name = field_name.replace(/-+/g, "-");
