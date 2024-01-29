@@ -20,14 +20,31 @@ class MarkdownView extends HTMLPreElement {
     this.style.border = "none";
     this.style.backgroundColor = "transparent";
     this.style.font = "inherit";
+
+    this.observer = new MutationObserver((mutationsList, observer) => {
+      this.render();
+    });
+
+    // Start observing the target node for configured mutations
+    this.observer.observe(this, {
+      attributes: true,
+      childList: true,
+      subtree: true,
+    });
   }
 
   async connectedCallback() {
     console.log("innerText", this.innerText);
     console.log("innerHTML", this.innerHTML);
+    this.render();
+  }
 
+  disconnectedCallback() {
+    this.observer.disconnect();
+  }
+
+  render() {
     this.innerHTML = marked(dedent(this.innerText.trim()));
-
     this.style.display = "block";
   }
 }
