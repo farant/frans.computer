@@ -23,6 +23,9 @@ class MarkdownView extends HTMLPreElement {
   }
 
   async connectedCallback() {
+    console.log("innerText", this.innerText);
+    console.log("innerHTML", this.innerHTML);
+
     this.innerHTML = marked(dedent(this.innerText.trim()));
 
     this.style.display = "block";
