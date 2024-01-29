@@ -272,6 +272,8 @@ class DesktopView extends HTMLElement {
       let position = JSON.parse(
         localStorage.getItem(`${this.get_form_id()}-${id}`)
       );
+      return position;
+      /*
       if (position) {
         let container = this.shadowRoot.querySelector(".desktop-view");
         let containerWidth = container.offsetWidth;
@@ -282,6 +284,7 @@ class DesktopView extends HTMLElement {
         position.y = (position.y / 100) * containerHeight;
       }
       return position;
+      */
     } catch {
       console.log("error getting position", item);
       return null;
@@ -292,8 +295,8 @@ class DesktopView extends HTMLElement {
     let position = this.load_position(item);
 
     if (position) {
-      item.style.left = position.x + "px";
-      item.style.top = position.y + "px";
+      item.style.left = position.x + "%";
+      item.style.top = position.y + "%";
     } else {
       let container = this.shadowRoot.querySelector(".desktop-view");
       let containerWidth = container.offsetWidth;
