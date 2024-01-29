@@ -12,7 +12,8 @@ import { nanoid } from "../vendor/nanoid.js";
 */
 
 class RenderEntityCollection extends HTMLElement {
-  connectedCallback() {
+  constructor() {
+    super();
     this.style.display = "none";
     console.log(this.innerHTML);
     this.output_id = nanoid();
