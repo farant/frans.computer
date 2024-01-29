@@ -1,4 +1,4 @@
-import { codeToHtml } from "https://esm.sh/shiki@0.8.0";
+import { codeToHtml } from "https://esm.run/shiki";
 
 class SyntaxHighlighting extends HTMLElement {
   constructor() {
