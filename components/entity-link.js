@@ -47,19 +47,20 @@ class EntityLink extends HTMLElement {
 
       for (let collection of collections) {
         let entities = collection.outerHTML;
-        let detached_node = document.createElement("div");
+        let hidden_container = document.createElement("div");
+        hidden_container.style.display = "none";
+        document.body.appendChild(hidden_container);
+
         let template = document.createElement("template");
         template.innerHTML = entities.trim();
-        detached_node.appendChild(template.content.cloneNode(true));
+        hidden_container.appendChild(template.content.cloneNode(true));
 
         let collection_component =
-          detached_node.querySelector("entity-collection");
+          hidden_container.querySelector("entity-collection");
 
         result = result.concat(await collection_component.get_data());
 
-        while (detached_node.firstChild) {
-          detached_node.removeChild(detached_node.firstChild);
-        }
+        document.body.removeChild(hidden_container);
       }
       console.log("result", result);
 
