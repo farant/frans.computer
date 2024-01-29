@@ -13,10 +13,17 @@ class MarkdownView extends HTMLPreElement {
   constructor() {
     super();
     this.style.display = "none";
+    // Reset the CSS of pre to be that of a normal div
+    this.style.whiteSpace = "normal";
+    this.style.margin = "0";
+    this.style.padding = "0";
+    this.style.border = "none";
+    this.style.backgroundColor = "transparent";
+    this.style.font = "inherit";
   }
 
   async connectedCallback() {
-    this.innerHTML = marked(dedent(this.innerHTML.trim()));
+    this.innerHTML = marked(dedent(this.innerText.trim()));
 
     this.style.display = "block";
   }

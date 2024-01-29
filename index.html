@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>Hypermedia and whatnot</title>
-		<script src="https://frans.computer/components.js"></script>
+		<script src="https://frans.computer/components.js" type="module"></script>
 	</head>
 	<body>
 		<entity-collection id="posts" type="post">
@@ -14,6 +14,12 @@
 					work. It's kind of working though. I need to make some kind of
 					`&lt;pre is="markdown-view"&gt;` for rendering markdown. I also
 					need to do `pre is=` for doing this field as well.
+
+					```js
+					function oh_wow() {
+						console.log("That would be nice");
+					}
+					```
 
 					Then I think it would be nice to start discovering re-usable
 					view stuff. It is kind of annoying to have to do all the work
