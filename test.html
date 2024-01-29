@@ -91,8 +91,26 @@ body {
 			</ul>
 		</div>
 
-		<pre is="syntax-highlighting" lang="html">
-			<h1>Hello, world!</h1>
+		<pre is="syntax-highlighting">
+			class SyntaxHighlighting extends HTMLPreElement {
+				constructor() {
+					super();
+					this.style.display = "none";
+				}
+				
+				async connectedCallback() {
+					this.innerHTML = await codeToHtml(dedent(this.innerHTML.trim()), {
+					lang: this.getAttribute("lang") || "js",
+					theme: "solarized-light",
+					});
+				
+					this.style.display = "block";
+				}
+			}
+			
+			window.customElements.define("syntax-highlighting", SyntaxHighlighting, {
+				extends: "pre",
+			});
 		</pre>
 
 		<render-entity-collection for="favorite-books">

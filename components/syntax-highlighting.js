@@ -16,7 +16,7 @@ class SyntaxHighlighting extends HTMLPreElement {
   }
 
   async connectedCallback() {
-    this.innerHTML = await codeToHtml(dedent(this.innerHTML), {
+    this.innerHTML = await codeToHtml(dedent(this.innerHTML.trim()), {
       lang: this.getAttribute("lang") || "js",
       theme: "solarized-light",
     });
