@@ -29,7 +29,7 @@ class SchemaBrowser extends HTMLElement {
 
     const observer = new MutationObserver((mutationsList, observer) => {
       // TODO: Make this smart
-      console.log("Rendering");
+      console.log("Rendering", mutationsList);
       this.render();
     });
 
