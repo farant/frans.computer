@@ -16,7 +16,7 @@ class RenderEntityCollection extends HTMLElement {
     super();
     this.style.display = "none";
     console.log(this.innerHTML);
-    this.output_id = nanoid();
+    this.saved_elements = [];
   }
 
   connectedCallback() {
@@ -31,13 +31,12 @@ class RenderEntityCollection extends HTMLElement {
     let data = [];
     if (collection) data = collection.get_data();
 
-    let output_id = this.output_id;
-    let elements_to_delete = document.querySelectorAll(
-      `[data-output-id="${output_id}"]`
-    );
+    let elements_to_delete = this.saved_elements;
     elements_to_delete.forEach((element) => {
       element.parentNode.removeChild(element);
     });
+
+    this.saved_elements = [];
 
     let raw_template = this.innerHTML;
     raw_template = raw_template.trim();
@@ -64,10 +63,6 @@ class RenderEntityCollection extends HTMLElement {
       return e;
     });
 
-    for (let element of elements) {
-      element.setAttribute("data-output-id", output_id);
-    }
-
     console.log("Elements", elements);
 
     let relative_node = this;
@@ -78,6 +73,8 @@ class RenderEntityCollection extends HTMLElement {
     ) {
       relative_node = this.parentNode;
     }
+
+    this.saved_elements = elements;
 
     for (let i = elements.length - 1; i >= 0; i--) {
       relative_node.parentNode.insertBefore(
