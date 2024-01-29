@@ -35,12 +35,14 @@ class SchemaBrowser extends HTMLElement {
   state = {
     current_schema_view: null,
   };
-
-  connectedCallback() {
+  constructor() {
+    super();
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(schema_browser_html.content.cloneNode(true));
     this.shadowRoot.adoptedStyleSheets = [schema_browser_css];
+  }
 
+  connectedCallback() {
     const observer = new MutationObserver((mutationsList, observer) => {
       // TODO: Make this smarter so that it only is triggered by entity-schema changes
 
