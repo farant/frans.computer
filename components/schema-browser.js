@@ -135,6 +135,7 @@ class SchemaBrowser extends HTMLElement {
 
     this.clickHandler = (event) => {
       let target = event.target;
+      console.log("Click handler called", target);
       if (target.classList.contains("schema-link")) {
         let schema_name = target.getAttribute("data-schema");
         let schema = schemas[schema_name];
