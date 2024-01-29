@@ -17,15 +17,17 @@ class EntityCollection extends HTMLElement {
     this.shadowRoot.appendChild(entity_collection_html.content.cloneNode(true));
   }
 
-  get_data() {
+  async get_data() {
     let data = [];
 
     let slot = this.shadowRoot.querySelector("slot");
-    slot.assignedElements().forEach((element) => {
+    for (let element of slot.assignedElements()) {
       if (element.tagName.toLowerCase() === "entity-data") {
         data.push(element.get_data());
+      } else if (element.tagName.toLowerCase() === "entity-link") {
+        data.push(...(await element.get_entities()));
       }
-    });
+    }
 
     return data;
   }

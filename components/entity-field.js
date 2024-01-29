@@ -9,7 +9,8 @@ entity_field_html.innerHTML = `
 </div>`;
 
 class EntityField extends HTMLElement {
-  connectedCallback() {
+  constructor() {
+    super();
     this.attachShadow({ mode: "open" });
     this.shadowRoot.adoptedStyleSheets = [entity_field_css];
     this.shadowRoot.appendChild(entity_field_html.content.cloneNode(true));

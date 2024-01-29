@@ -23,13 +23,13 @@ class RenderEntityCollection extends HTMLElement {
     this.render();
   }
 
-  render() {
+  async render() {
     let collection = document.querySelector(
       `entity-collection[id="${this.getAttribute("for")}"]`
     );
 
     let data = [];
-    if (collection) data = collection.get_data();
+    if (collection) data = await collection.get_data();
 
     let elements_to_delete = this.saved_elements;
     elements_to_delete.forEach((element) => {
