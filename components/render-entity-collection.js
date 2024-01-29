@@ -39,6 +39,7 @@ class RenderEntityCollection extends HTMLElement {
     });
 
     let raw_template = this.innerHTML;
+    raw_template = raw_template.trim();
 
     let parser = new DOMParser();
     let template = parser.parseFromString(raw_template, "text/html");
@@ -53,11 +54,24 @@ class RenderEntityCollection extends HTMLElement {
       elements.push(...clone.body.childNodes);
     });
 
+    elements = elements.map((e) => {
+      if (!e.setAttribute) {
+        let span = document.createElement("span");
+        span.appendChild(e);
+        return span;
+      }
+      return e;
+    });
+
     for (let element of elements) {
       element.setAttribute("data-output-id", output_id);
     }
 
-    console.log("Elements", elements);
+    for (let i = elements.length - 1; i >= 0; i--) {
+      this.parentNode.insertBefore(elements[i], this.nextSibling);
+    }
+
+    //console.log("Elements", elements);
   }
 }
 
