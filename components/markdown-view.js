@@ -23,12 +23,17 @@ class MarkdownView extends HTMLPreElement {
   }
 
   async connectedCallback() {
-    console.log("innerText", dedent(this.innerText.trim()));
-    console.log("innerHTML", dedent(this.innerHTML.trim()));
     this.render();
   }
 
   render() {
+    if (
+      this.children.length === 1 &&
+      this.children[0].tagName.toLowerCase() === "p"
+    ) {
+      this.innerHTML = this.children[0].innerHTML;
+    }
+
     this.innerHTML = marked(dedent(this.innerHTML.trim()));
     this.style.display = "block";
   }
