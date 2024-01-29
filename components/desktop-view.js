@@ -158,6 +158,8 @@ class DesktopView extends HTMLElement {
           continue;
         }
 
+        node = await this.set_processed_node(item);
+
         let id = await this.get_id(item);
         item.setAttribute("id", id);
         node.id = id;
@@ -165,8 +167,6 @@ class DesktopView extends HTMLElement {
         item.style.position = "absolute";
         item.setAttribute("draggable", "true");
         this.initialize_position(item);
-
-        node = await this.set_processed_node(item);
 
         item.addEventListener("dragstart", async (event) => {
           // x and y position of target
