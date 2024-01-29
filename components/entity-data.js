@@ -34,7 +34,11 @@ class EntityData extends HTMLElement {
 
     let slot = this.shadowRoot.querySelector("slot");
     slot.assignedElements().forEach((element) => {
-      let name = element.tagName.toLowerCase().replace(/-/g, "_");
+      let name = element.tagName;
+      if (element.hasAttribute("is")) name = element.getAttribute("is");
+
+      name = name.toLowerCase().replace(/-/g, "_");
+
       data[name] = element.textContent;
     });
 

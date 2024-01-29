@@ -9,3 +9,4 @@ import {} from "./components/random-nanoid.js";
 import {} from "./components/render-entity-collection.js";
 import {} from "./components/schema-browser.js";
 import {} from "./components/syntax-highlighting.js";
+import {} from "./components/markdown-view.js";
