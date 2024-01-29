@@ -23,8 +23,8 @@ class MarkdownView extends HTMLPreElement {
   }
 
   async connectedCallback() {
-    console.log("innerText", this.innerText);
-    console.log("innerHTML", this.innerHTML);
+    console.log("innerText", dedent(this.innerText.trim()));
+    console.log("innerHTML", dedent(this.innerHTML.trim()));
     this.render();
   }
 
