@@ -44,7 +44,6 @@ desktop_dragging_style.innerHTML = `
 	}
   .desktop-draggable-container {
     width: max-content;
-    border: 1px solid red;
   }
 `;
 
