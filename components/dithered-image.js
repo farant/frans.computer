@@ -63,17 +63,15 @@ copy the contents of ${HOST_DOMAIN}/js/ditherworker.js to
       crunchFactor: 0,
       imageSrc: "",
     };
-
-    const shadowDOM = this.attachShadow({ mode: "open" });
-    this.shadowDOM = shadowDOM;
   }
 
   connectedCallback() {
-    if (!this.isConnected) {
+    if (!this.isConnected || this.shadowDOM) {
       return;
     }
 
-    const shadowDOM = this.shadowDOM;
+    const shadowDOM = this.attachShadow({ mode: "open" });
+    this.shadowDOM = shadowDOM;
 
     const style = document.createElement("style");
     style.innerHTML = DITHERED_IMAGE_STYLE;
