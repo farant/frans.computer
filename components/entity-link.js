@@ -43,6 +43,8 @@ class EntityLink extends HTMLElement {
 
       console.log("collections", collections);
 
+      await customElements.whenDefined("entity-collection");
+
       for (let collection of collections) {
         let entities = collection.outerHTML;
         let detached_node = document.createElement("div");
