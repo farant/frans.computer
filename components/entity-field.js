@@ -16,7 +16,13 @@ class EntityField extends HTMLElement {
   }
 
   get_text() {
-    return this.shadowRoot.querySelector("slot").assignedNodes()[0].textContent;
+    console.log("Calling get_text", this);
+    let value = this.shadowRoot
+      .querySelector("slot")
+      .assignedNodes()[0].textContent;
+
+    console.log("value", value);
+    return value;
   }
 }
 
