@@ -193,6 +193,18 @@ class DesktopView extends HTMLElement {
       }
     });
     this.style.display = "block";
+
+    // Add a ResizeObserver to watch for size changes
+    const resizeObserver = new ResizeObserver(() => {
+      const main_slot = this.shadowRoot.querySelector("slot");
+      let items = Object.values(this.processed_nodes);
+      for (let item of items) {
+        if (item.nodeType === Node.ELEMENT_NODE) {
+          this.initialize_position(item);
+        }
+      }
+    });
+    resizeObserver.observe(this);
   }
 
   async get_id(item) {
@@ -228,11 +240,23 @@ class DesktopView extends HTMLElement {
 
   set_position(item, x, y) {
     let id = item.getAttribute("id");
+    let container = this.shadowRoot.querySelector(".desktop-view");
+    let containerWidth = container.offsetWidth;
+    let containerHeight = container.offsetHeight;
 
-    console.log("setting position", `${this.get_form_id()}-${id}`, x, y);
+    // Convert pixel position to percentage
+    let xPercentage = (x / containerWidth) * 100;
+    let yPercentage = (y / containerHeight) * 100;
+
+    console.log(
+      "setting position",
+      `${this.get_form_id()}-${id}`,
+      xPercentage,
+      yPercentage
+    );
     localStorage.setItem(
       `${this.get_form_id()}-${id}`,
-      JSON.stringify({ x, y })
+      JSON.stringify({ x: xPercentage, y: yPercentage })
     );
   }
 
@@ -241,7 +265,19 @@ class DesktopView extends HTMLElement {
 
     try {
       console.log("getting position", `${this.get_form_id()}-${id}`);
-      return JSON.parse(localStorage.getItem(`${this.get_form_id()}-${id}`));
+      let position = JSON.parse(
+        localStorage.getItem(`${this.get_form_id()}-${id}`)
+      );
+      if (position) {
+        let container = this.shadowRoot.querySelector(".desktop-view");
+        let containerWidth = container.offsetWidth;
+        let containerHeight = container.offsetHeight;
+
+        // Convert percentage position back to pixels
+        position.x = (position.x / 100) * containerWidth;
+        position.y = (position.y / 100) * containerHeight;
+      }
+      return position;
     } catch {
       console.log("error getting position", item);
       return null;
@@ -255,10 +291,19 @@ class DesktopView extends HTMLElement {
       item.style.left = position.x + "px";
       item.style.top = position.y + "px";
     } else {
-      this.last_x += this.increment;
-      this.last_y += this.increment;
-      item.style.left = this.last_x + "px";
-      item.style.top = this.last_y + "px";
+      let container = this.shadowRoot.querySelector(".desktop-view");
+      let containerWidth = container.offsetWidth;
+      let containerHeight = container.offsetHeight;
+
+      // Convert pixel increment to percentage
+      let xIncrementPercentage = (this.increment / containerWidth) * 100;
+      let yIncrementPercentage = (this.increment / containerHeight) * 100;
+
+      this.last_x += xIncrementPercentage;
+      this.last_y += yIncrementPercentage;
+
+      item.style.left = this.last_x + "%";
+      item.style.top = this.last_y + "%";
     }
   }
 }
