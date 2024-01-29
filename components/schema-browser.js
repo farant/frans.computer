@@ -130,17 +130,21 @@ class SchemaBrowser extends HTMLElement {
       this.render_schema_view(first_schema);
     }
 
-    let schema_links = this.shadowRoot.querySelectorAll(".schema-link");
-    for (let link of schema_links) {
-      link.addEventListener("click", (event) => {
-        console.log("Clicked link", event.target);
-        let schema_name = link.getAttribute("data-schema");
+    this.clickHandler = (event) => {
+      let target = event.target;
+      if (target.classList.contains("schema-link")) {
+        let schema_name = target.getAttribute("data-schema");
         let schema = schemas[schema_name];
-        console.log(schema);
         this.state.current_schema_view = schema_name;
         this.render_schema_view(schema);
-      });
+      }
+    };
+
+    if (this.shadowRoot.hasEventListener("click", this.clickHandler)) {
+      this.shadowRoot.removeEventListener("click", this.clickHandler);
     }
+
+    this.shadowRoot.addEventListener("click", this.clickHandler);
   }
 
   render_schema_view(schema) {
