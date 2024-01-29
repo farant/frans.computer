@@ -63,3 +63,5 @@ class EntityLink extends HTMLElement {
     }
   }
 }
+
+window.customElements.define("entity-link", EntityLink);
