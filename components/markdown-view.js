@@ -12,7 +12,13 @@ marked.use({
 marked.use({
   hooks: {
     postprocess(html) {
-      console.log("post html", html);
+      html = html
+        .replace(/&lt;/g, "<")
+        .replace(/&gt;/g, ">")
+        .replace(/&quot;/g, '"')
+        .replace(/&#039;/g, "'")
+        .replace(/&amp;/g, "&");
+
       return html;
     },
     preprocess(html) {
@@ -21,11 +27,6 @@ marked.use({
     },
   },
 });
-
-function html_decode(input) {
-  var doc = new DOMParser().parseFromString(input, "text/html");
-  return doc.documentElement.textContent;
-}
 
 class MarkdownView extends HTMLPreElement {
   constructor() {
