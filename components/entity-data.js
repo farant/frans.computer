@@ -37,7 +37,7 @@ class EntityData extends HTMLElement {
       let name = element.tagName;
       if (element.hasAttribute("is")) name = element.getAttribute("is");
 
-      name = name.toLowerCase().replace(/-/g, "_");
+      name = name.toLowerCase();
 
       data[name] = element.textContent;
     });

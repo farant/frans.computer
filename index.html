@@ -45,6 +45,7 @@
 
             Maybe the command palette is a desktop+folder view? I wouldn't hate that.
           </pre>
+          <pic>/images/illustrations/castle-maze.png</pic>
         </entity-data>
         <entity-data>
           <title>Next stuff</title>
@@ -72,7 +73,7 @@
           <title>What next?</title>
           <author>Fran</author>
           <date>2024-01-29 20:12:59</date>
-          <pic>/images/memes/lotr-vs-hp.png</pic>
+          <no-border-pic>/images/memes/lotr-vs-hp.png</no-border-pic>
           <pre is="content">
             Well, this is working pretty well actually!
 
@@ -100,6 +101,21 @@
             <format-date><field>date</field></format-date>
           </em>
         </div>
+        <if-field field="no-border-pic">
+          <div
+            style="
+              max-width: 400px;
+              border-radius: 20px;
+              overflow: hidden;
+              margin-top: 1em;
+            "
+          >
+            <dithered-image
+              src="field-value:no-border-pic"
+              border="false"
+            ></dithered-image>
+          </div>
+        </if-field>
         <if-field field="pic">
           <div
             style="
@@ -111,7 +127,7 @@
           >
             <dithered-image
               src="field-value:pic"
-              border="false"
+              border="true"
             ></dithered-image>
           </div>
         </if-field>
