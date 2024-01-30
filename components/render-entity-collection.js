@@ -45,6 +45,7 @@ class RenderEntityCollection extends HTMLElement {
     let template = parser.parseFromString(raw_template, "text/html");
     let elements = [];
     data.forEach((item) => {
+      console.log("item data", item);
       let clone = template.cloneNode(true);
       let fields = clone.querySelectorAll("field");
       for (let field of fields) {
