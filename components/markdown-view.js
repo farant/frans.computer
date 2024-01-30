@@ -6,10 +6,10 @@ marked.use({
     code(code, language) {
       return `<pre is="syntax-highlighting" lang="${language}">${code}</pre>`;
     },
-  },
-  html(html) {
-    console.log("html", html);
-    return html;
+    html(html) {
+      console.log("html", html);
+      return html;
+    },
   },
 });
 
