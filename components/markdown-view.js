@@ -13,6 +13,15 @@ marked.use({
   },
 });
 
+marked.use({
+  hooks: {
+    postprocess(html) {
+      console.log("html", html);
+      return html;
+    },
+  },
+});
+
 function html_decode(input) {
   var doc = new DOMParser().parseFromString(input, "text/html");
   return doc.documentElement.textContent;
