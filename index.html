@@ -13,9 +13,34 @@
         border-radius: 3px;
         color: #596e75;
       }
+      pre.shiki.solarized-light {
+        border-image: conic-gradient(#fdf6e3 0 0) fill 0 //0 100vw;;
+      }
     </style>
     <div style="display: none">
       <entity-collection id="posts" type="post">
+        <entity-data>
+          <title>Next stuff</title>
+          <author>Fran</author>
+          <date>2024-01-29 21:32:35</date>
+          <pre is="content">
+            Nice! Expanding on the templating languages pretty well. Can do stuff
+            like this now:
+
+            ```html
+            &lt;if-field field="pic"&gt;
+                &lt;dithered-image src="field-value:pic"&gt;&lt;/dithered-image&gt;
+            &lt;/if-field&gt;
+            ```
+
+            I guess I'm still excited about nested `&lt;entity-data&gt;` and then
+            maybe timelines next. 
+
+            It actually would be very cool to add a command palette 🤔
+
+            HMMM
+          </pre>
+        </entity-data>
         <entity-data>
           <title>What next?</title>
           <author>Fran</author>
