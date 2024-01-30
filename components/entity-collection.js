@@ -15,6 +15,7 @@ class EntityCollection extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.adoptedStyleSheets = [entity_collection_css];
     this.shadowRoot.appendChild(entity_collection_html.content.cloneNode(true));
+    this.style.display = "none";
   }
 
   async get_data() {
