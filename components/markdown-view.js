@@ -7,6 +7,7 @@ marked.use({
       return `<pre is="syntax-highlighting" lang="${language}">${code}</pre>`;
     },
     codespan(text) {
+      /*
       // Escape <, >, &, " and '
       const escapedText = text
         .replace(/&amp;/g, "&")
@@ -14,6 +15,7 @@ marked.use({
         .replace(/&gt;/g, ">")
         .replace(/&quot;/g, '"')
         .replace(/&#039;/g, "'");
+        */
 
       return `<code>${escapedText}</code>`;
     },
