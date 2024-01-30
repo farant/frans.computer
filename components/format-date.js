@@ -12,10 +12,10 @@ format_date_html.innerHTML = `
 
 class FormatDate extends HTMLElement {
   constructor() {
+    super();
     this.attachShadow({ mode: "open" });
     this.shadowRoot.adoptedStyleSheets = [format_date_css];
     this.shadowRoot.appendChild(format_date_html.content.cloneNode(true));
-    super();
   }
 
   connectedCallback() {
