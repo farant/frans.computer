@@ -147,6 +147,20 @@
       </entity-collection>
       <entity-collection id="posts" type="post">
         <entity-data>
+          <title>Oh Safari...</title>
+          <author>Fran</author>
+          <date>2024-01-30 09:32:33</date>
+          <plain-screenshot
+            >/images/screenshots/safari-incompatible-with-options.png</plain-screenshot
+          >
+          <pre is="content">
+            Bugs I know about web components so far:
+            
+            * Text selection related events don't work in shadow dom
+            * Safari doesn't support `&lt;tag is="component"&gt;` syntax
+          </pre>
+        </entity-data>
+        <entity-data>
           <title>More cool ideas</title>
           <author>Fran</author>
           <date>2024-01-30 00:26:01</date>
@@ -344,6 +358,11 @@
           <div class="post-body" style="max-width: 60ch">
             <pre is="markdown-view"><field>content</field></pre>
           </div>
+          <if-field field="plain-screenshot">
+            <div style="max-width: 400px; margin-top: 1em">
+              <img style="max-width: 100%" src="field-value:plain-screenshot" />
+            </div>
+          </if-field>
         </div>
       </rotate-jitter>
     </render-entity-collection>
