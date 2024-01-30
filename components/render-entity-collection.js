@@ -51,6 +51,33 @@ class RenderEntityCollection extends HTMLElement {
         let field_name = field.innerHTML;
         field.replaceWith(document.createTextNode(item[field_name]));
       }
+      let if_fields = clone.querySelectorAll("if-field");
+      for (let condition of if_fields) {
+        let field_name = condition.getAttribute("field");
+        if (!!item[field_name]) {
+          condition.replaceWith(...condition.childNodes);
+        } else {
+          condition.parentNode.removeChild(condition);
+        }
+      }
+
+      let attributeNodes = Array.from(clone.querySelectorAll("*")).filter(
+        (node) => {
+          return Array.from(node.attributes).some((attr) =>
+            attr.value.startsWith("field-value:")
+          );
+        }
+      );
+
+      for (let node of attributeNodes) {
+        for (let attr of node.attributes) {
+          if (attr.value.startsWith("field-value:")) {
+            let fieldName = attr.value.substring("field-value:".length);
+            attr.value = item[fieldName] || "";
+          }
+        }
+      }
+
       elements.push(...clone.body.childNodes);
     });
 

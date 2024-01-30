@@ -2,59 +2,47 @@
 <html>
   <head>
     <title>Hypermedia and whatnot</title>
-    <script
-      src="https://frans.computer/components.js"
-      type="module"
-      async="false"
-    ></script>
+    <script src="https://frans.computer/components.js" type="module"></script>
   </head>
   <body>
     <div style="display: none">
       <entity-collection id="posts" type="post">
         <entity-data>
-          <title>Hypermedia is cool</title>
+          <title>What next?</title>
           <author>Fran</author>
-          <date>2024-01-29 19:45:38</date>
+          <date>2024-01-29 20:12:59</date>
+          <image>/images/memes/lotr-vs-hp.png</image>
           <pre is="content">
-					Hypermedia is pretty cool. This is very much a hack to make it
-					work. It's kind of working though. I need to make some kind of
-					`&lt;pre is="markdown-view"&gt;` for rendering markdown. I also
-					need to do `pre is=` for doing this field as well.
+            Well, this is working pretty well actually!
 
-					```js
-					function oh_wow() {
-						console.log("That would be nice");
-					}
-					```
+            What are my next priorities?
 
-					### Next steps
-
-					Then I think it would be nice to start discovering re-usable
-					view stuff. It is kind of annoying to have to do all the work
-					to make things look nice every time.
-
-					I'm vaguely curious if I can even do signals or something,
-					but I don't want to get ahead of myself. Maybe a spreadsheet
-					component or something like that.
-
-					Another cool idea would be nested `&lt;entity-data&gt;`
-					components, because then I could have ideas inside of posts
-					or something like that. Heterogenous collections that are
-					not all of the same type would be pretty cool too.
-				</pre
-          >
+            * Nested entity-data
+            * Fix the flash of "un-componented" content on page load (it's pretty fast if the network can cache)
+            * `sort-by-date-asc` and `sort-by-date-desc` properties for `&lt;render-entity-collection&gt;`
+            * Also want to add `&lt;if-field&gt;` component for conditional rendering
+            * In this case I probably want to have a `field-value:my-field` kind of attribute so that I can use it for img srcs and stuff
+          </pre>
         </entity-data>
+        <entity-link src="/old-posts.html"></entity-link>
       </entity-collection>
     </div>
 
     <render-entity-collection for="posts">
-      <div class="post">
+      <div class="post" style="margin-bottom: 5em">
+        <if-field field="image">
+          <dithered-image src="field-value:image"></dithered-image>
+        </if-field>
         <h2>
           <field>title</field>
           <span class="author">by <field>author</field></span>
         </h2>
-        <format-date><field>date</field></format-date>
-        <div class="post-body">
+        <div class="post-date">
+          <em>
+            <format-date><field>date</field></format-date>
+          </em>
+        </div>
+        <div class="post-body" style="max-width: 60ch">
           <pre is="markdown-view"><field>content</field></pre>
         </div>
       </div>
