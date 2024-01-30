@@ -9,6 +9,11 @@ marked.use({
   },
 });
 
+function html_decode(input) {
+  var doc = new DOMParser().parseFromString(input, "text/html");
+  return doc.documentElement.textContent;
+}
+
 class MarkdownView extends HTMLPreElement {
   constructor() {
     super();
@@ -34,7 +39,7 @@ class MarkdownView extends HTMLPreElement {
       this.innerHTML = this.children[0].innerHTML;
     }
 
-    this.innerHTML = marked(dedent(this.innerHTML.trim()));
+    this.innerHTML = html_decode(marked(dedent(this.innerHTML.trim())));
     this.style.display = "block";
   }
 }
