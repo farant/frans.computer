@@ -1,20 +1,20 @@
-const locale_date_css = new CSSStyleSheet();
-locale_date_css.replaceSync(`
+const format_date_css = new CSSStyleSheet();
+format_date_css.replaceSync(`
 `);
 
-const locale_date_html = document.createElement("template");
-locale_date_html.innerHTML = `
+const format_date_html = document.createElement("template");
+format_date_html.innerHTML = `
 <div style="display:none;">
 <slot></slot>
 </div>
-<div class="locale-date"></div>
+<div class="format-date"></div>
 `;
 
-class LocaleDate extends HTMLElement {
+class FormatDate extends HTMLElement {
   constructor() {
     this.attachShadow({ mode: "open" });
-    this.shadowRoot.adoptedStyleSheets = [locale_date_css];
-    this.shadowRoot.appendChild(locale_date_html.content.cloneNode(true));
+    this.shadowRoot.adoptedStyleSheets = [format_date_css];
+    this.shadowRoot.appendChild(format_date_html.content.cloneNode(true));
     super();
   }
 
@@ -31,4 +31,4 @@ class LocaleDate extends HTMLElement {
   }
 }
 
-window.customElements.define("locale-date", LocaleDate);
+window.customElements.define("format-date", FormatDate);
