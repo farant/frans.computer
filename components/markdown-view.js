@@ -6,10 +6,6 @@ marked.use({
     code(code, language) {
       return `<pre is="syntax-highlighting" lang="${language}">${code}</pre>`;
     },
-    html(html) {
-      console.log("html", html);
-      return html;
-    },
   },
 });
 
@@ -54,7 +50,7 @@ class MarkdownView extends HTMLPreElement {
 
     let input = dedent(this.innerHTML.trim());
     console.log("input", input);
-    console.log("decoded", html_decode(input));
+    console.log("decoded", input);
 
     let text = marked(html_decode(input));
 
