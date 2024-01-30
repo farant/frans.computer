@@ -17,7 +17,7 @@ marked.use({
         .replace(/&#039;/g, "'");
         */
 
-      return `<code>${escapedText}</code>`;
+      return `<span>${escapedText}</span>`;
     },
   },
 });
