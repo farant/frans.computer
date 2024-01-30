@@ -52,8 +52,17 @@ class RenderEntityCollection extends HTMLElement {
         field.replaceWith(document.createTextNode(item[field_name]));
       }
       let if_fields = clone.querySelectorAll("if-field");
+      console.log("if_fields", if_fields);
       for (let condition of if_fields) {
         let field_name = condition.getAttribute("field");
+        console.log(
+          "field_name",
+          field_name,
+          "value",
+          !!item[field_name],
+          "item",
+          item[field_name]
+        );
         if (!!item[field_name]) {
           condition.replaceWith(...condition.childNodes);
         } else {
@@ -69,10 +78,17 @@ class RenderEntityCollection extends HTMLElement {
         }
       );
 
+      console.log("attributeNodes", attributeNodes);
+
       for (let node of attributeNodes) {
         for (let attr of node.attributes) {
           if (attr.value.startsWith("field-value:")) {
             let fieldName = attr.value.substring("field-value:".length);
+
+            console.log("attr", attr);
+            console.log("fieldName", fieldName);
+            console.log("item[fieldName]", item[fieldName]);
+
             attr.value = item[fieldName] || "";
           }
         }
