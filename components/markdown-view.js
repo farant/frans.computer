@@ -6,6 +6,16 @@ marked.use({
     code(code, language) {
       return `<pre is="syntax-highlighting" lang="${language}">${code}</pre>`;
     },
+    codespan(text) {
+      // Escape <, >, &, " and '
+      const escapedText = text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+      return `<code>${escapedText}</code>`;
+    },
   },
 });
 
