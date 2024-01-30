@@ -26,7 +26,16 @@ class FormatDate extends HTMLElement {
       console.log("date", date);
 
       let locale_date = this.shadowRoot.querySelector(".format-date");
-      locale_date.textContent = date.toLocaleDateString();
+
+      let options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+      };
+      locale_date.textContent = date.toLocaleDateString(undefined, options);
     });
   }
 }
