@@ -275,50 +275,52 @@
     </div>
 
     <render-entity-collection for="posts">
-      <div class="post" style="margin-bottom: 5em">
-        <h2>
-          <field>title</field>
-          <span class="author">by <field>author</field></span>
-        </h2>
-        <div class="post-date">
-          <em>
-            <format-date><field>date</field></format-date>
-          </em>
-        </div>
-        <if-field field="no-border-pic">
-          <div
-            style="
-              max-width: 400px;
-              border-radius: 20px;
-              overflow: hidden;
-              margin-top: 1em;
-            "
-          >
-            <dithered-image
-              src="field-value:no-border-pic"
-              border="false"
-            ></dithered-image>
+      <rotate-jitter range="1.5">
+        <div class="post" style="margin-bottom: 5em">
+          <h2>
+            <field>title</field>
+            <span class="author">by <field>author</field></span>
+          </h2>
+          <div class="post-date">
+            <em>
+              <format-date><field>date</field></format-date>
+            </em>
           </div>
-        </if-field>
-        <if-field field="pic">
-          <div
-            style="
-              max-width: 400px;
-              border-radius: 20px;
-              overflow: hidden;
-              margin-top: 1em;
-            "
-          >
-            <dithered-image
-              src="field-value:pic"
-              border="true"
-            ></dithered-image>
+          <if-field field="no-border-pic">
+            <div
+              style="
+                max-width: 400px;
+                border-radius: 20px;
+                overflow: hidden;
+                margin-top: 1em;
+              "
+            >
+              <dithered-image
+                src="field-value:no-border-pic"
+                border="false"
+              ></dithered-image>
+            </div>
+          </if-field>
+          <if-field field="pic">
+            <div
+              style="
+                max-width: 400px;
+                border-radius: 20px;
+                overflow: hidden;
+                margin-top: 1em;
+              "
+            >
+              <dithered-image
+                src="field-value:pic"
+                border="true"
+              ></dithered-image>
+            </div>
+          </if-field>
+          <div class="post-body" style="max-width: 60ch">
+            <pre is="markdown-view"><field>content</field></pre>
           </div>
-        </if-field>
-        <div class="post-body" style="max-width: 60ch">
-          <pre is="markdown-view"><field>content</field></pre>
         </div>
-      </div>
+      </rotate-jitter>
     </render-entity-collection>
   </body>
 </html>
