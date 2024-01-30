@@ -1,6 +1,17 @@
 import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
 import { dedent } from "/vendor/dedent.js";
 
+const markdown_view_css = new CSSStyleSheet();
+markdown_view_css.replaceSync(`
+  pre[is="markdown-view"] {
+    white-space: pre-line;
+  }
+`);
+document.adoptedStyleSheets = [
+  ...document.adoptedStyleSheets,
+  markdown_view_css,
+];
+
 marked.use({
   renderer: {
     code(code, language) {
