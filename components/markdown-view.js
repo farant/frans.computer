@@ -39,7 +39,7 @@ class MarkdownView extends HTMLPreElement {
       this.innerHTML = this.children[0].innerHTML;
     }
 
-    this.innerHTML = html_decode(marked(dedent(this.innerHTML.trim())));
+    this.innerHTML = marked(dedent(this.innerHTML.trim()));
     this.style.display = "block";
   }
 }
