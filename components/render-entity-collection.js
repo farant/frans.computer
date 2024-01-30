@@ -44,6 +44,14 @@ class RenderEntityCollection extends HTMLElement {
     let parser = new DOMParser();
     let template = parser.parseFromString(raw_template, "text/html");
     let elements = [];
+
+    if (this.getAttribute("sort-by")) {
+      let key = this.getAttribute("sort-by");
+      data.sort((a, b) => {
+        return a[key].localeCompare(b[key]);
+      });
+    }
+
     data.forEach((item) => {
       console.log("item data", item);
       let clone = template.cloneNode(true);

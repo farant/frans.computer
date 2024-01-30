@@ -63,6 +63,35 @@
       }
     </style>
     <div style="display: none">
+      <entity-collection id="components" type="component">
+        <entity-data>
+          <name>&lt;markdown-contenteditable&gt;</name>
+        </entity-data>
+        <entity-data>
+          <name>&lt;theme-definition&gt;</name>
+        </entity-data>
+        <entity-data>
+          <name>&lt;searchable-table&gt;</name>
+        </entity-data>
+        <entity-data>
+          <name>&lt;event-timeline&gt;</name>
+        </entity-data>
+        <entity-data>
+          <name>&lt;inputs-for-entity&gt;</name>
+        </entity-data>
+        <entity-data>
+          <name>&lt;command-palette&gt;</name>
+        </entity-data>
+        <entity-data>
+          <name>&lt;sitemap-overlay&gt;</name>
+        </entity-data>
+        <entity-data>
+          <name>&lt;state-machine&gt;</name>
+        </entity-data>
+        <entity-data>
+          <name>&lt;llm-prompt&gt;</name>
+        </entity-data>
+      </entity-collection>
       <entity-collection id="posts" type="post">
         <entity-data>
           <title>Possible user stories</title>
@@ -157,6 +186,19 @@
         </entity-data>
         <entity-link src="/old-posts.html"></entity-link>
       </entity-collection>
+    </div>
+
+    <div class="post" style="margin-bottom: 5em">
+      <h2>Component TODO</h2>
+      <div class="post-body" style="max-width: 60ch">
+        <ul>
+          <render-entity-collection for="components" sort-by="name">
+            <li>
+              <code><field>name</field></code>
+            </li>
+          </render-entity-collection>
+        </ul>
+      </div>
     </div>
 
     <render-entity-collection for="posts">
