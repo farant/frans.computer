@@ -91,8 +91,33 @@
         <entity-data>
           <name>&lt;llm-prompt&gt;</name>
         </entity-data>
+        <entity-data>
+          <name>&lt;youtube-video&gt;</name>
+        </entity-data>
+        <entity-data>
+          <name>&lt;map-with-pin&gt;</name>
+        </entity-data>
+        <entity-data>
+          <name>&lt;command-action&gt;</name>
+        </entity-data>
       </entity-collection>
       <entity-collection id="posts" type="post">
+        <entity-data>
+          <title>Brainstorming on command palette</title>
+          <author>Fran</author>
+          <date>2024-01-29 23:38:59</date>
+          <pic>/images/illustrations/library.png</pic>
+          <pre is="content">
+            I know off the top of my head there are a few things I would want:
+
+            * Fuzzy search by command name
+            * Command arguments/inputs? Perhaps this would be a hypermedia control
+            * Commands that jump to a particular page
+            * Talking to GPT and it choosing a command from the list
+            * Possibly keyboard shortcuts or chords for commands
+            * Description / help for each command
+          </pre>
+        </entity-data>
         <entity-data>
           <title>Possible user stories</title>
           <author>Fran</author>
@@ -191,13 +216,13 @@
     <div class="post" style="margin-bottom: 5em">
       <h2>Component TODO</h2>
       <div class="post-body" style="max-width: 60ch">
-        <ul>
+        <ol>
           <render-entity-collection for="components" sort-by="name">
             <li>
               <code><field>name</field></code>
             </li>
           </render-entity-collection>
-        </ul>
+        </ol>
       </div>
     </div>
 
