@@ -52,8 +52,11 @@ class MarkdownView extends HTMLPreElement {
       this.innerHTML = this.children[0].innerHTML;
     }
 
-    let text = marked(dedent(this.innerHTML.trim()));
+    let input = dedent(this.innerHTML.trim());
+    let text = marked(input);
+
     console.log("text", text);
+    console.log("input", input);
     this.innerHTML = text;
     this.style.display = "block";
   }
