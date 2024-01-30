@@ -115,6 +115,12 @@
         <entity-data>
           <name>&lt;sentence-reader&gt;</name>
         </entity-data>
+        <entity-data>
+          <name>&lt;pdf-reader&gt;</name>
+        </entity-data>
+        <entity-data>
+          <name>&lt;epub-reader&gt;</name>
+        </entity-data>
       </entity-collection>
       <entity-collection id="posts" type="post">
         <entity-data>
@@ -242,9 +248,9 @@
     <div class="post" style="margin-bottom: 5em">
       <h2>Component TODO</h2>
       <div class="post-body" style="max-width: 60ch">
-        <ol>
+        <ol style="column-count: 2; column-gap: 3em">
           <render-entity-collection for="components" sort-by="name">
-            <li>
+            <li style="white-space: nowrap">
               <code><field>name</field></code>
             </li>
           </render-entity-collection>
