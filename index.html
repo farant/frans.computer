@@ -4,24 +4,33 @@
     <title>Hypermedia and whatnot</title>
     <script src="https://frans.computer/components.js" type="module"></script>
   </head>
-  <body>
+  <body style="background-color: #f0e9d2">
+    <style>
+      code {
+        background-color: #fdf6e3;
+        display: inline-block;
+        padding: 0px 5px;
+        border-radius: 3px;
+        color: #596e75;
+      }
+    </style>
     <div style="display: none">
       <entity-collection id="posts" type="post">
         <entity-data>
           <title>What next?</title>
           <author>Fran</author>
           <date>2024-01-29 20:12:59</date>
-          <image>/images/memes/lotr-vs-hp.png</image>
+          <pic>/images/memes/lotr-vs-hp.png</pic>
           <pre is="content">
             Well, this is working pretty well actually!
 
             What are my next priorities?
 
-            * Nested entity-data
+            * Nested `&lt;entity-data&gt;`
             * Fix the flash of "un-componented" content on page load (it's pretty fast if the network can cache)
             * `sort-by-date-asc` and `sort-by-date-desc` properties for `&lt;render-entity-collection&gt;`
-            * Also want to add `&lt;if-field&gt;` component for conditional rendering
-            * In this case I probably want to have a `field-value:my-field` kind of attribute so that I can use it for img srcs and stuff
+            * ✅ Also want to add `&lt;if-field&gt;` component for conditional rendering
+            * ✅ In this case I probably want to have a `field-value:my-field` kind of attribute so that I can use it for img srcs and stuff
           </pre>
         </entity-data>
         <entity-link src="/old-posts.html"></entity-link>
@@ -30,9 +39,6 @@
 
     <render-entity-collection for="posts">
       <div class="post" style="margin-bottom: 5em">
-        <if-field field="image">
-          <dithered-image src="field-value:image"></dithered-image>
-        </if-field>
         <h2>
           <field>title</field>
           <span class="author">by <field>author</field></span>
@@ -42,6 +48,21 @@
             <format-date><field>date</field></format-date>
           </em>
         </div>
+        <if-field field="pic">
+          <div
+            style="
+              max-width: 400px;
+              border-radius: 20px;
+              overflow: hidden;
+              margin-top: 1em;
+            "
+          >
+            <dithered-image
+              src="field-value:pic"
+              border="false"
+            ></dithered-image>
+          </div>
+        </if-field>
         <div class="post-body" style="max-width: 60ch">
           <pre is="markdown-view"><field>content</field></pre>
         </div>
