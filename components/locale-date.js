@@ -23,6 +23,7 @@ class LocaleDate extends HTMLElement {
 
     slot.addEventListener("slotchange", () => {
       let date = new Date(slot.assignedNodes()[0].textContent);
+      console.log("date", date);
 
       let locale_date = this.shadowRoot.querySelector(".locale-date");
       locale_date.textContent = date.toLocaleDateString();
