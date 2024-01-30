@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Hypermedia and whatnot</title>
-		<script src="https://frans.computer/components.js" type="module"></script>
-	</head>
-	<body>
-		<entity-collection id="posts" type="post">
-			<entity-data>
-				<title>Hypermedia is cool</title>
-				<author>Fran</author>
-				<pre is="content">
+  <head>
+    <title>Hypermedia and whatnot</title>
+    <script
+      src="https://frans.computer/components.js"
+      type="module"
+      async="false"
+    ></script>
+  </head>
+  <body>
+    <div style="display: none">
+      <entity-collection id="posts" type="post">
+        <entity-data>
+          <title>Hypermedia is cool</title>
+          <author>Fran</author>
+          <date>2024-01-29 19:45:38</date>
+          <pre is="content">
 					Hypermedia is pretty cool. This is very much a hack to make it
 					work. It's kind of working though. I need to make some kind of
 					`&lt;pre is="markdown-view"&gt;` for rendering markdown. I also
@@ -35,19 +41,23 @@
 					components, because then I could have ideas inside of posts
 					or something like that. Heterogenous collections that are
 					not all of the same type would be pretty cool too.
-				</pre>
-			</entity-data>
-		</entity-collection>
+				</pre
+          >
+        </entity-data>
+      </entity-collection>
+    </div>
 
-		<render-entity-collection for="posts">
-			<div class="post">
-				<h2>
-					<field>title</field> <span class="author">by <field>author</field></span>
-				</h2>
-				<div class="post-body">
-					<pre is="markdown-view"><field>content</field></pre>
-				</div>
-			</div>
-		</render-entity-collection>
-	</body>
+    <render-entity-collection for="posts">
+      <div class="post">
+        <h2>
+          <field>title</field>
+          <span class="author">by <field>author</field></span>
+        </h2>
+        <format-date><field>date</field></format-date>
+        <div class="post-body">
+          <pre is="markdown-view"><field>content</field></pre>
+        </div>
+      </div>
+    </render-entity-collection>
+  </body>
 </html>

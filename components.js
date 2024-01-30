@@ -10,3 +10,4 @@ import {} from "./components/render-entity-collection.js";
 import {} from "./components/schema-browser.js";
 import {} from "./components/syntax-highlighting.js";
 import {} from "./components/markdown-view.js";
+import {} from "./components/locale-date.js";
