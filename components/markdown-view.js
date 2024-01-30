@@ -12,7 +12,11 @@ marked.use({
 marked.use({
   hooks: {
     postprocess(html) {
-      console.log("html", html);
+      console.log("post html", html);
+      return html;
+    },
+    preprocess(html) {
+      console.log("pre html", html);
       return html;
     },
   },
