@@ -4,8 +4,8 @@ live_clock_css.replaceSync(`
 
 const live_clock_html = document.createElement("template");
 live_clock_html.innerHTML = `
-<div class="clock-output">
-</div>
+<span class="clock-output">
+</span>
 `;
 
 class LiveClock extends HTMLElement {
