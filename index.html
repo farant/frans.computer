@@ -277,7 +277,18 @@
     </div>
 
     <div class="post" style="margin-bottom: 5em">
-      <h2>Component TODO - <live-clock></live-clock></h2>
+      <h2 style="display: flex; justify-content: space-between">
+        Component TODO
+        <div
+          style="
+            display: inline-block;
+            font-family: CozetteVector;
+            opacity: 0.3;
+          "
+        >
+          <live-clock></live-clock>
+        </div>
+      </h2>
       <div class="post-body" style="max-width: 60ch">
         <ol style="column-count: 2; column-gap: 3em">
           <render-entity-collection for="components" sort-by="name">
