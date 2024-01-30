@@ -56,7 +56,7 @@ class MarkdownView extends HTMLPreElement {
     console.log("input", input);
     console.log("decoded", input);
 
-    let text = marked(html_decode(input));
+    let text = marked(input);
 
     console.log("text", text);
     /*
