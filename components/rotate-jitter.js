@@ -21,7 +21,7 @@ class RotateJitter extends HTMLElement {
 
   connectedCallback() {
     this.shadowRoot.querySelector(
-      "container"
+      ".container"
     ).style.transform = `rotate(${this.rotate}deg)`;
   }
 }
