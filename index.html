@@ -66,7 +66,7 @@
 
       pre.shiki.solarized-light {
         line-height: 145%;
-        border-image: conic-gradient(#fdf6e3 0 0) fill 0 //0 100vw;;
+        border-image: conic-gradient(#fdf6e3 0 0) fill 0; //0 100vw;;
       }
 
       .author {
@@ -142,6 +142,9 @@
         <entity-data>
           <name>&lt;dag-view&gt;</name>
         </entity-data>
+        <entity-data>
+          <name>&lt;web-component-help&gt;</name>
+        </entity-data>
       </entity-collection>
       <entity-collection id="posts" type="post">
         <entity-data>
@@ -158,6 +161,7 @@
             * A terminal
             * Some kind of hypercard stack creator/editor
             * A sqlite database browser
+            * Event sourcing and read models
           </pre>
           <pic>/images/illustrations/gophers.png</pic>
         </entity-data>
@@ -273,7 +277,7 @@
     </div>
 
     <div class="post" style="margin-bottom: 5em">
-      <h2>Component TODO</h2>
+      <h2>Component TODO - <live-clock></live-clock></h2>
       <div class="post-body" style="max-width: 60ch">
         <ol style="column-count: 2; column-gap: 3em">
           <render-entity-collection for="components" sort-by="name">

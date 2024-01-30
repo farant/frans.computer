@@ -12,3 +12,4 @@ import {} from "./components/syntax-highlighting.js";
 import {} from "./components/markdown-view.js";
 import {} from "./components/format-date.js";
 import {} from "./components/rotate-jitter.js";
+import {} from "./components/live-clock.js";
