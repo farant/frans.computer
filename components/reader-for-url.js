@@ -116,7 +116,7 @@ class ReaderForUrl extends HTMLElement {
     this.shadowRoot.querySelector("#highlights-view").innerHTML = markup;
 
     if (this.pending_highlight) {
-      let highlight_to_save = pending_highlight;
+      let highlight_to_save = this.pending_highlight;
       this.shadowRoot
         .querySelector(".pending-highlight button")
         .addEventListener("click", () => {
