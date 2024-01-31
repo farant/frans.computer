@@ -1,9 +1,11 @@
 const reader_for_url_css = new CSSStyleSheet();
 reader_for_url_css.replace(`
+#reader-for-url {
     font-size: 1.4em;
     margin-bottom: 1em;
     font-weight: bold;
     font-family: monospace;
+}
 `);
 
 const reader_for_url_html = document.createElement("template");
