@@ -90,7 +90,7 @@ class ReaderForUrl extends HTMLElement {
       .querySelector("#url-content")
       .addEventListener("mouseup", () => {
         let selection = window.getSelection().toString();
-        this.pending_highlight = selected;
+        this.pending_highlight = selection;
         this.render_highlights();
       });
 
