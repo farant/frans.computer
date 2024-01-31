@@ -1,10 +1,18 @@
 const reader_for_url_css = new CSSStyleSheet();
 reader_for_url_css.replace(`
+    font-size: 1.4em;
+    margin-bottom: 1em;
+    font-weight: bold;
+    font-family: monospace;
 `);
 
 const reader_for_url_html = document.createElement("template");
 reader_for_url_html.innerHTML = `
-<div id="url-content">
+<div>
+    <div id="reader-for-url">
+    </div>
+    <div id="url-content">
+    </div>
 </div>
 `;
 
@@ -19,6 +27,10 @@ class ReaderForUrl extends HTMLElement {
   async connectedCallback() {
     let url = this.getAttribute("url");
     let api_url = this.getAttribute("api-url");
+
+    this.shadowRoot.querySelector(
+      "#reader-for-url"
+    ).innerHTML = `Reader for ${url}`;
 
     if (!api_url || !url) {
       return console.error("Missing required attributes", { api_url, url });
