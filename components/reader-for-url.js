@@ -91,21 +91,18 @@ class ReaderForUrl extends HTMLElement {
     if (existing_element) {
       existing_element.remove();
     }
-    let new_element = document.createElement('div');
+    let new_element = document.createElement("div");
     new_element.id = this.id;
     new_element.innerHTML = markup;
     this.after(new_element);
     markup = new_element.outerHTML;
 
+    window.getElementById(this.id).addEventListener("mouseup", () => {
+      let selection = window.getSelection();
 
-    window.getElementById(this.id)
-      .addEventListener("mouseup", () => {
-        let selection = window.getSelection()
-        let 
-
-        this.pending_highlight = selection.toString();
-        this.render_highlights();
-      });
+      this.pending_highlight = selection.toString();
+      this.render_highlights();
+    });
 
     this.render_highlights();
   }
