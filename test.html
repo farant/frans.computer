@@ -1,97 +1,105 @@
 <!DOCTYPE html>
 <html>
-<head>
-		<title>Test</title>
-		<script type="module" src="https://frans.computer/components.js"></script>
-</head>
-<body>
-<style>
-.card {
-	background: #ddd;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 10px;
-	box-sizing: border-box;
-	padding: 2em;
-}
-body {
-	background-image: url("https://frans.computer/images/tile_crystal2.png");
-}
-</style>
+  <head>
+    <title>Test</title>
+    <script type="module" src="https://frans.computer/components.js"></script>
+  </head>
+  <body>
+    <style>
+      .card {
+        background: #ddd;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        box-sizing: border-box;
+        padding: 2em;
+      }
+      body {
+        background-image: url("https://frans.computer/images/tile_crystal2.png");
+      }
+    </style>
 
-	<theme-definition
-			primary-color="#ff0000"
-			secondary-color="#00ff00"
-			background-image="https://frans.computer/images/tile_crystal2.png"
-			header-font="blah"
-			body-font="blah">
-	</theme-definition>
+    <theme-definition
+      primary-color="#ff0000"
+      secondary-color="#00ff00"
+      background-image="https://frans.computer/images/tile_crystal2.png"
+      header-font="blah"
+      body-font="blah"
+    >
+    </theme-definition>
 
-	<entity-schema name="book">
-		<entity-field>title</entity-field>
-		<entity-field>author</entity-field>
-		<entity-field>year published</entity-field>
-		<entity-field>publisher</entity-field>
-	</entity-schema>
+    <entity-schema name="book">
+      <entity-field>title</entity-field>
+      <entity-field>author</entity-field>
+      <entity-field>year published</entity-field>
+      <entity-field>publisher</entity-field>
+    </entity-schema>
 
-	<searchable-table>
+    <searchable-table>
+      <entity-collection id="favorite-books" type="book">
+        <entity-link src="/church-father-books.html"></entity-link>
 
-		<entity-collection id="favorite-books" type="book">
+        <entity-data>
+          <title>Harry Potter and the Philosopher's Stone</title>
+          <author>J. K. Rowling</author>
+          <year-published>1997</year-published>
+          <publisher>Bloomsbury</publisher>
+        </entity-data>
 
-			<entity-link src="/church-father-books.html"></entity-link>
+        <entity-data>
+          <title>Orthodoxy</title>
+          <author>G. K. Chesterton</author>
+          <year-published>1908</year-published>
+          <publisher>Dodd, Mead and Company</publisher>
+        </entity-data>
+      </entity-collection>
 
-			<entity-data>
-				<title>Harry Potter and the Philosopher's Stone</title>
-				<author>J. K. Rowling</author>
-				<year-published>1997</year-published>
-				<publisher>Bloomsbury</publisher>
-			</entity-data>
+      <entity-collection id="recent-books" from="favorite-books">
+        <script type="filter">
+          return item.year_published > 1900;
+        </script>
+      </entity-collection>
 
-			<entity-data>
-				<title>Orthodoxy</title>
-				<author>G. K. Chesterton</author>
-				<year-published>1908</year-published>
-				<publisher>Dodd, Mead and Company</publisher>
-			</entity-data>
+      <entity-collection id="recent-books">
+        <script type="map" source="favorite-books">
+          result.century = (Math.floor(item.year_published / 100) + 1) + "th century"
+        </script>
+      </entity-collection>
+    </searchable-table>
 
-		<entity-collection>
+    <desktop-view>
+      <random-nanoid></random-nanoid>
 
-	</searchable-table>
+      <div style="width: 500px">
+        <dithered-image src="test-image.jpg"></dithered-image>
+      </div>
 
-	<desktop-view>
+      <div style="width: 500px">
+        <schema-browser></schema-browser>
+      </div>
 
-		<random-nanoid></random-nanoid>
+      <div style="width: 300px" id="todo-list">
+        <h2>Todo</h2>
+        <ul>
+          <li>✅ &lt;entity-schema&gt;</li>
+          <li>✅ &lt;entity-field&gt;</li>
+          <li>✅ &lt;schema-browser&gt;</li>
+          <li>✅ &lt;entity-data&gt;</li>
+          <li>✅ &lt;entity-collection&gt;</li>
+          <li>✅ &lt;render-entity-collection&gt;</li>
+          <li>✅ &lt;entity-link&gt;</li>
+          <li>✅ &lt;source-code&gt; (&lt;pre is=syntax-highlighting&gt;)</li>
+          <li>✅ &lt;markdown-block&gt;</li>
+          <li>&lt;fields-from-entity-schema&gt;</li>
+          <li>&lt;theme-definition&gt;</li>
+          <li>&lt;searchable-table&gt;</li>
+          <li>&lt;event-timeline&gt;</li>
+          <li>Add sort to &lt;render-entity-collection&gt;</li>
+        </ul>
+      </div>
 
-		<div style="width: 500px;">
-			<dithered-image src="test-image.jpg"></dithered-image>
-		</div>
-
-		<div style="width: 500px">
-			<schema-browser></schema-browser>
-		</div>
-
-		<div style="width: 300px" id="todo-list">
-			<h2>Todo</h2>
-			<ul>
-				<li>✅ &lt;entity-schema&gt;</li>
-				<li>✅ &lt;entity-field&gt;</li>
-				<li>✅ &lt;schema-browser&gt;</li>
-				<li>✅ &lt;entity-data&gt;</li>
-				<li>✅ &lt;entity-collection&gt;</li>
-				<li>✅ &lt;render-entity-collection&gt;</li>
-				<li>✅ &lt;entity-link&gt;</li>
-				<li>✅ &lt;source-code&gt; (&lt;pre is=syntax-highlighting&gt;)</li>
-				<li>✅ &lt;markdown-block&gt;</li>
-				<li>&lt;fields-from-entity-schema&gt;</li>
-				<li>&lt;theme-definition&gt;</li>
-				<li>&lt;searchable-table&gt;</li>
-				<li>&lt;event-timeline&gt;</li>
-				<li>Add sort to &lt;render-entity-collection&gt;</li>
-			</ul>
-		</div>
-
-		<pre is="syntax-highlighting">
+      <pre is="syntax-highlighting">
 			class SyntaxHighlighting extends HTMLPreElement {
 				constructor() {
 					super();
@@ -111,18 +119,17 @@ body {
 			window.customElements.define("syntax-highlighting", SyntaxHighlighting, {
 				extends: "pre",
 			});
-		</pre>
+		</pre
+      >
 
-		<render-entity-collection for="favorite-books">
-			<div class="card">
-				<div>
-					<div class="card-name"><field>title</field></div>
-					<div class="card-subheading">By <field>author</field></div>
-				</div>
-			</div>
-		</render-entity-collection>
-
-	</desktop-view>
-</body>
+      <render-entity-collection for="favorite-books">
+        <div class="card">
+          <div>
+            <div class="card-name"><field>title</field></div>
+            <div class="card-subheading">By <field>author</field></div>
+          </div>
+        </div>
+      </render-entity-collection>
+    </desktop-view>
+  </body>
 </html>
-
