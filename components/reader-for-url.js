@@ -46,8 +46,8 @@ class ReaderForUrl extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.adoptedStyleSheets = [reader_for_url_css];
     this.shadowRoot.appendChild(reader_for_url_html.content.cloneNode(true));
-    this.id = nanoid();
-    console.log({ id: this.id });
+    this.unique_id = nanoid();
+    console.log({ id: this.unique_id });
   }
 
   load_saved_highlights(url) {
@@ -88,12 +88,12 @@ class ReaderForUrl extends HTMLElement {
 
     let markup = await (await fetch(`${api_url}?url=${uri_encoded}`)).text();
 
-    let existing_element = document.getElementById(this.id);
+    let existing_element = document.getElementById(this.unique_id);
     if (existing_element) {
       existing_element.remove();
     }
     let new_element = document.createElement("div");
-    new_element.id = this.id;
+    new_element.id = this.unique_id;
     new_element.innerHTML = markup;
     this.after(new_element);
 
