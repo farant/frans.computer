@@ -147,8 +147,37 @@
         <entity-data>
           <name>&lt;calendar-view&gt;</name>
         </entity-data>
+        <entity-data>
+          <name>&lt;monaco-editor&gt;</name>
+        </entity-data>
+        <entity-data>
+          <name>&lt;scheduled-reminder&gt;</name>
+        </entity-data>
+        <entity-data>
+          <name>&lt;read-model&gt;</name>
+        </entity-data>
       </entity-collection>
       <entity-collection id="posts" type="post">
+        <entity-data>
+          <title>Web component root class</title>
+          <author>Fran</author>
+          <date>2024-01-31 09:09:00</date>
+          <pre is="content">
+            So right now there are parts of the web component lifecycle that are pretty
+            flakey. 
+
+            There are a some patterns that I'm using:
+
+            * Putting data inside of web components via slots. In theory if the data changes
+              the web component should re-render.
+            * Nesting web components inside of each other
+            * Have data dependencies on certain kinds of web components (or their children)
+              that are scattered across the whole document.
+            * Loading remote HTML fragments and reading data from them
+            * Loading remote HTML fragments and inserting them into the document
+
+          </pre>
+        </entity-data>
         <entity-data>
           <title>Oh Safari...</title>
           <author>Fran</author>
