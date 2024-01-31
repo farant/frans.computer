@@ -49,7 +49,10 @@ class ReaderForUrl extends HTMLElement {
   load_saved_highlights(url) {
     let highlights = [];
     try {
-      highlights = JSON.parse(localStorage.getItem(`highlights:${url}`));
+      let saved = JSON.parse(localStorage.getItem(`highlights:${url}`));
+      if (saved) {
+        highlights = saved;
+      }
     } catch (e) {
       console.error(e);
     }
