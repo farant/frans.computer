@@ -99,7 +99,7 @@ class ReaderForUrl extends HTMLElement {
 
     console.log(new_element);
 
-    document.getElementById(this.id).addEventListener("mouseup", () => {
+    document.getElementById(this.unique_id).addEventListener("mouseup", () => {
       let selection = window.getSelection();
 
       this.pending_highlight = selection.toString();
