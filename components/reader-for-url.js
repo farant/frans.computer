@@ -1,3 +1,5 @@
+import { nanoid } from "/vendor/nanoid.js";
+
 const reader_for_url_css = new CSSStyleSheet();
 reader_for_url_css.replace(`
 #reader-for-url {
@@ -44,6 +46,7 @@ class ReaderForUrl extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.adoptedStyleSheets = [reader_for_url_css];
     this.shadowRoot.appendChild(reader_for_url_html.content.cloneNode(true));
+    this.id = nanoid();
   }
 
   load_saved_highlights(url) {
@@ -84,13 +87,23 @@ class ReaderForUrl extends HTMLElement {
 
     let markup = await (await fetch(`${api_url}?url=${uri_encoded}`)).text();
 
-    this.shadowRoot.querySelector("#url-content").innerHTML = markup;
+    let existing_element = document.getElementById(this.id);
+    if (existing_element) {
+      existing_element.remove();
+    }
+    let new_element = document.createElement('div');
+    new_element.id = this.id;
+    new_element.innerHTML = markup;
+    this.after(new_element);
+    markup = new_element.outerHTML;
 
-    this.shadowRoot
-      .querySelector("#url-content")
+
+    window.getElementById(this.id)
       .addEventListener("mouseup", () => {
-        let selection = window.getSelection().toString();
-        this.pending_highlight = selection;
+        let selection = window.getSelection()
+        let 
+
+        this.pending_highlight = selection.toString();
         this.render_highlights();
       });
 
