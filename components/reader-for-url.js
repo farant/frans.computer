@@ -109,18 +109,29 @@ class ReaderForUrl extends HTMLElement {
     this.render_highlights();
   }
 
+  escape_html(unsafe) {
+    return unsafe
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
   render_highlights() {
     let highlights = this.load_saved_highlights(this.getAttribute("url"));
 
     let markup = `<div class="saved-highlights">`;
     for (let highlight of highlights) {
-      markup += `<div class="saved-highlight">${highlight}</div>`;
+      markup += `<div class="saved-highlight">${this.escape_html(
+        highlight
+      )}</div>`;
     }
     markup += `</div>`;
 
     if (this.pending_highlight) {
       markup += `<div class="pending-highlight">
-        ${this.pending_highlight}
+        ${this.escape_html(this.pending_highlight)}
         <div><button>Save</button></div>
       </div>`;
     }
