@@ -179,7 +179,15 @@
               inside of itself so that each rendered dom element can be a child of a 
               given parent
 
-            
+            Big picture problems to solve:
+
+            * Re-rendering after changes to DOM (whether nested or elsewhere)
+            * Re-rendering elements in the right order. 
+
+            In a way children are not just opaque views to be rendered by parent components
+            but are actually props that the render function of the parent component
+            depends on.
+
 
           </pre>
         </entity-data>
