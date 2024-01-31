@@ -42,6 +42,13 @@ class ReaderForUrl extends HTMLElement {
     let markup = await (await fetch(`${api_url}?url=${uri_encoded}`)).text();
 
     this.shadowRoot.querySelector("#url-content").innerHTML = markup;
+
+    this.shadowRoot
+      .querySelector("#url-content")
+      .addEventListener("mouseup", () => {
+        let selected_text = window.getSelection().toString();
+        console.log({ selected_text });
+      });
   }
 }
 
