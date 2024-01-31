@@ -13,3 +13,4 @@ import {} from "./components/markdown-view.js";
 import {} from "./components/format-date.js";
 import {} from "./components/rotate-jitter.js";
 import {} from "./components/live-clock.js";
+import {} from "./components/reader-for-url.js";
