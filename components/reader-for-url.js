@@ -1,4 +1,4 @@
-import { nanoid } from "/vendor/nanoid.js";
+import { nanoid } from "../vendor/nanoid.js";
 
 const reader_for_url_css = new CSSStyleSheet();
 reader_for_url_css.replace(`
@@ -47,6 +47,7 @@ class ReaderForUrl extends HTMLElement {
     this.shadowRoot.adoptedStyleSheets = [reader_for_url_css];
     this.shadowRoot.appendChild(reader_for_url_html.content.cloneNode(true));
     this.id = nanoid();
+    console.log({ id: this.id });
   }
 
   load_saved_highlights(url) {
@@ -95,7 +96,8 @@ class ReaderForUrl extends HTMLElement {
     new_element.id = this.id;
     new_element.innerHTML = markup;
     this.after(new_element);
-    markup = new_element.outerHTML;
+
+    console.log(new_element);
 
     document.getElementById(this.id).addEventListener("mouseup", () => {
       let selection = window.getSelection();
