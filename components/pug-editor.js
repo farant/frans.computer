@@ -13,8 +13,8 @@ class PugEditor extends HTMLElement {
     }
   }
 
-  connectedCallback() {
-    let pug = HtmlToPug(this._initial_inner_html);
+  async connectedCallback() {
+    let pug = await HtmlToPug(this._initial_inner_html);
 
     this.innerHTML = `<pre>${pug}</pre>`;
   }
