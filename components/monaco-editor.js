@@ -1,28 +1,5 @@
 import * as monaco from "https://cdn.jsdelivr.net/npm/monaco-editor@0.39.0/+esm";
 
-let monaco_cdn_script =
-  "https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs/loader.min.js";
-let monaco_cdn_css =
-  "https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs/editor/editor.main.min.css";
-
-/*
-let script_tag = document.createElement("script");
-script_tag.src = monaco_cdn_script;
-document.head.appendChild(script_tag);
-
-let link_tag = document.createElement("link");
-link_tag.href = monaco_cdn_css;
-link_tag.rel = "stylesheet";
-link_tag.setAttribute("data-name", "vs/editor/editor.main");
-document.head.appendChild(link_tag);
-
-require.config({
-  paths: {
-    vs: "https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs",
-  },
-});
-*/
-
 class MonacoEditor extends HTMLElement {
   // attributeChangedCallback will be called when the value of one of these attributes is changed in html
   static get observedAttributes() {
