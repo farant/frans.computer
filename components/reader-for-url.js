@@ -18,6 +18,8 @@ reader_for_url_css.replace(`
     bottom: 0;
     padding-top: 100px;
     padding-bottom: 300px;
+    box-sizing: border-box;
+    padding-right: 2em;
 }
 
 #highlights-view::-webkit-scrollbar {
