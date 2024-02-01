@@ -37,10 +37,11 @@ reader_for_url_css.replace(`
     border: 1px solid #ccc;
     border-radius: 0.5em;
     white-space: pre-line;
+    line-height: 128%;
 }
 
 .saved-highlight span {
-    background-color: #eee;
+    background-color: #ffdf5e7a;
 }
 
 .pending-highlight-text {
