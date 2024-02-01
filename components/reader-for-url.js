@@ -39,6 +39,10 @@ reader_for_url_css.replace(`
     white-space: pre-line;
 }
 
+.saved-highlight span {
+    background-color: #eee;
+}
+
 .pending-highlight-text {
     white-space: pre-line;
 }
@@ -159,9 +163,9 @@ class ReaderForUrl extends HTMLElement {
 
     markup += `<div class="saved-highlights">`;
     for (let highlight of highlights) {
-      markup += `<div class="saved-highlight">${this.escape_html(
+      markup += `<div class="saved-highlight"><span>${this.escape_html(
         highlight
-      )}</div>`;
+      )}</span></div>`;
     }
     markup += `</div>`;
 
