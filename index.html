@@ -213,7 +213,14 @@
             but are actually props that the render function of the parent component
             depends on.
 
+            So I think the web components should be event driven. So there need
+            to be built in functions for generating events and subscribing to them.
 
+            So the part that seems trickiest is handling the re-rendering of components
+            in a deterministic way. Because technically if stuff is based on loading 
+            data from the DOM then children / leaf elements need to update first (especially
+            if their data changes in any way) and then the re-render should bubble up
+            through parent components.
           </pre>
         </entity-data>
         <entity-data>
