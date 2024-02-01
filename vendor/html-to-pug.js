@@ -281,9 +281,18 @@ const defaultOptions = {
   preserveLineBreaks: true,
 };
 
-export default (sourceHtml, options = {}) => {
+export default async (sourceHtml, options = {}) => {
   // Minify source HTML
   const opts = { ...defaultOptions, ...options };
+
+  await new Promise((resolve) => {
+    let key = setInterval(() => {
+      if (window.require) {
+        clearInterval(key);
+        resolve();
+      }
+    }, 100);
+  });
 
   minify = window.require("html-minifier").minify;
   const html = minify(sourceHtml, opts);
