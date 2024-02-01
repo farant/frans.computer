@@ -271,7 +271,7 @@ const defaultOptions = {
   tabs: true,
   commas: true,
   doubleQuotes: false,
-  newLine: true,
+  newLine: false,
 
   // html-minifier options
   caseSensitive: true,
