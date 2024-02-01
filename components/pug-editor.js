@@ -16,7 +16,7 @@ class PugEditor extends HTMLElement {
   async connectedCallback() {
     let pug = await HtmlToPug(this._initial_inner_html);
 
-    this.innerHTML = `<pre>${pug}</pre>`;
+    this.innerHTML = `<monaco-editor language="pug">${pug}</monaco-editor>`;
   }
 }
 
