@@ -294,7 +294,7 @@ export default async (sourceHtml, options = {}) => {
     }, 100);
   });
 
-  minify = window.require("html-minifier").minify;
+  let minify = window.require("html-minifier").minify;
   const html = minify(sourceHtml, opts);
 
   const { fragment, tabs, commas, doubleQuotes, newLine, header } = opts;
