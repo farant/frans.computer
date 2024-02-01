@@ -7,10 +7,6 @@ let script = document.createElement("script");
 script.src = "https://kangax.github.io/html-minifier/dist/htmlminifier.min.js";
 document.head.appendChild(script);
 
-window.minify = window.require("html-minifier").minify;
-
-let minify = window.minify;
-
 const DOCUMENT_TYPE_NODE = "#documentType";
 const TEXT_NODE = "#text";
 const DIV_NODE = "div";
@@ -288,6 +284,8 @@ const defaultOptions = {
 export default (sourceHtml, options = {}) => {
   // Minify source HTML
   const opts = { ...defaultOptions, ...options };
+
+  minify = window.require("html-minifier").minify;
   const html = minify(sourceHtml, opts);
 
   const { fragment, tabs, commas, doubleQuotes, newLine, header } = opts;
