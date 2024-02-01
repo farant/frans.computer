@@ -14,6 +14,19 @@ reader_for_url_css.replace(`
     right: 0;
     top: 0;
     max-width: 60ch;
+    overflow-y: scroll;
+    bottom: 0;
+    padding-top: 100px;
+    padding-bottom: 300px;
+}
+
+#highlights-view::-webkit-scrollbar {
+    width: 0;
+}
+
+#highlights-view {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 .saved-highlight {
@@ -120,6 +133,14 @@ class ReaderForUrl extends HTMLElement {
 
   render_highlights() {
     let highlights = this.load_saved_highlights(this.getAttribute("url"));
+    highlights = highlights.reverse();
+
+    if (this.pending_highlight) {
+      markup += `<div class="pending-highlight">
+        ${this.escape_html(this.pending_highlight)}
+        <div><button>Save</button></div>
+      </div>`;
+    }
 
     let markup = `<div class="saved-highlights">`;
     for (let highlight of highlights) {
@@ -128,13 +149,6 @@ class ReaderForUrl extends HTMLElement {
       )}</div>`;
     }
     markup += `</div>`;
-
-    if (this.pending_highlight) {
-      markup += `<div class="pending-highlight">
-        ${this.escape_html(this.pending_highlight)}
-        <div><button>Save</button></div>
-      </div>`;
-    }
 
     this.shadowRoot.querySelector("#highlights-view").innerHTML = markup;
 
