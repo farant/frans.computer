@@ -36,6 +36,11 @@ reader_for_url_css.replace(`
     padding: 1em;
     border: 1px solid #ccc;
     border-radius: 0.5em;
+    white-space: pre-line;
+}
+
+.pending-highlight-text {
+    white-space: pre-line;
 }
 
 .saved-highlights {
@@ -139,7 +144,9 @@ class ReaderForUrl extends HTMLElement {
 
     if (this.pending_highlight) {
       markup += `<div class="pending-highlight">
-        ${this.escape_html(this.pending_highlight)}
+        <div class="pending-highlight-text">${this.escape_html(
+          this.pending_highlight
+        )}</div>
         <div><button>Save</button></div>
       </div>`;
     }
