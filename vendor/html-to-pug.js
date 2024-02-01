@@ -2,7 +2,7 @@ import {
   parse,
   parseFragment,
 } from "https://cdn.jsdelivr.net/npm/parse5@7.1.2/+esm";
-import { minify } from "https://cdn.jsdelivr.net/npm/html-minifier@4.0.0/+esm";
+import { minify } from "./html-minifier.js";
 
 const DOCUMENT_TYPE_NODE = "#documentType";
 const TEXT_NODE = "#text";
