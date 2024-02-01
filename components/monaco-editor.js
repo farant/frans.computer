@@ -23,16 +23,6 @@ require.config({
 });
 */
 
-const monaco_editor_html = document.createElement("template");
-monaco_editor_html.innerHTML = `
-<div id="editor">
-    <div style="display: none">
-        <slot id="initial-markup"></slot>
-    </div>
-    <div id="monaco-container"></div>
-</div>
-`;
-
 class MonacoEditor extends HTMLElement {
   // attributeChangedCallback will be called when the value of one of these attributes is changed in html
   static get observedAttributes() {
@@ -49,8 +39,8 @@ class MonacoEditor extends HTMLElement {
     this._form = null;
     this._handleFormData = this._handleFormData.bind(this);
 
-    this.attachShadow({ mode: "open" });
-    this.shadowRoot.appendChild(monaco_editor_html.content.cloneNode(true));
+    this._initial_inner_html = this.innerHTML;
+    this.innerHTML = "";
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -107,7 +97,7 @@ class MonacoEditor extends HTMLElement {
     container.appendChild(language_dropdown);
     container.appendChild(editor);
 
-    this.shadowRoot.getElementById("monaco-container").appendChild(container);
+    this.appendChild(container);
 
     // window.editor is accessible.
     var init = () => {
@@ -358,9 +348,7 @@ class MonacoEditor extends HTMLElement {
     if (this.hasAttribute("value")) {
       return this.getAttribute("value");
     } else {
-      return (
-        this.shadowRoot.getElementById("initial-markup").innerHTML.trim() || ""
-      );
+      return this._initial_inner_html.trim() || "";
     }
   }
 
