@@ -268,7 +268,7 @@ class Pugify {
 const defaultOptions = {
   // html2pug options
   fragment: false,
-  tabs: false,
+  tabs: true,
   commas: true,
   doubleQuotes: false,
   newLine: true,
