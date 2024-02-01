@@ -98,235 +98,235 @@ class MonacoEditor extends HTMLElement {
 
     // window.editor is accessible.
     var init = () => {
-      require(["vs/editor/editor.main"], () => {
-        monaco.editor.defineTheme("bird-of-paradise", {
-          base: "vs-dark",
-          inherit: true,
-          rules: [
-            {
-              background: "372725",
-              token: "",
-            },
-            {
-              foreground: "e6e1c4",
-              background: "322323",
-              token: "source",
-            },
-            {
-              foreground: "6b4e32",
-              fontStyle: "italic",
-              token: "comment",
-            },
-            {
-              foreground: "ef5d32",
-              token: "keyword",
-            },
-            {
-              foreground: "ef5d32",
-              token: "storage",
-            },
-            {
-              foreground: "efac32",
-              token: "entity.name.function",
-            },
-            {
-              foreground: "efac32",
-              token: "keyword.other.name-of-parameter.objc",
-            },
-            {
-              foreground: "efac32",
-              fontStyle: "bold",
-              token: "entity.name",
-            },
-            {
-              foreground: "6c99bb",
-              token: "constant.numeric",
-            },
-            {
-              foreground: "7daf9c",
-              token: "variable.language",
-            },
-            {
-              foreground: "7daf9c",
-              token: "variable.other",
-            },
-            {
-              foreground: "6c99bb",
-              token: "constant",
-            },
-            {
-              foreground: "efac32",
-              token: "variable.other.constant",
-            },
-            {
-              foreground: "6c99bb",
-              token: "constant.language",
-            },
-            {
-              foreground: "d9d762",
-              token: "string",
-            },
-            {
-              foreground: "efac32",
-              token: "support.function",
-            },
-            {
-              foreground: "efac32",
-              token: "support.type",
-            },
-            {
-              foreground: "6c99bb",
-              token: "support.constant",
-            },
-            {
-              foreground: "efcb43",
-              token: "meta.tag",
-            },
-            {
-              foreground: "efcb43",
-              token: "declaration.tag",
-            },
-            {
-              foreground: "efcb43",
-              token: "entity.name.tag",
-            },
-            {
-              foreground: "efcb43",
-              token: "entity.other.attribute-name",
-            },
-            {
-              foreground: "ffffff",
-              background: "990000",
-              token: "invalid",
-            },
-            {
-              foreground: "7daf9c",
-              token: "constant.character.escaped",
-            },
-            {
-              foreground: "7daf9c",
-              token: "constant.character.escape",
-            },
-            {
-              foreground: "7daf9c",
-              token: "string source",
-            },
-            {
-              foreground: "7daf9c",
-              token: "string source.ruby",
-            },
-            {
-              foreground: "e6e1dc",
-              background: "144212",
-              token: "markup.inserted",
-            },
-            {
-              foreground: "e6e1dc",
-              background: "660000",
-              token: "markup.deleted",
-            },
-            {
-              background: "2f33ab",
-              token: "meta.diff.header",
-            },
-            {
-              background: "2f33ab",
-              token: "meta.separator.diff",
-            },
-            {
-              background: "2f33ab",
-              token: "meta.diff.index",
-            },
-            {
-              background: "2f33ab",
-              token: "meta.diff.range",
-            },
-          ],
-          colors: {
-            "editor.foreground": "#E6E1C4",
-            "editor.background": "#372725",
-            "editor.selectionBackground": "#16120E",
-            "editor.lineHighlightBackground": "#1F1611",
-            "editorCursor.foreground": "#E6E1C4",
-            "editorWhitespace.foreground": "#42302D",
+      //require(["vs/editor/editor.main"], () => {
+      monaco.editor.defineTheme("bird-of-paradise", {
+        base: "vs-dark",
+        inherit: true,
+        rules: [
+          {
+            background: "372725",
+            token: "",
           },
-        });
+          {
+            foreground: "e6e1c4",
+            background: "322323",
+            token: "source",
+          },
+          {
+            foreground: "6b4e32",
+            fontStyle: "italic",
+            token: "comment",
+          },
+          {
+            foreground: "ef5d32",
+            token: "keyword",
+          },
+          {
+            foreground: "ef5d32",
+            token: "storage",
+          },
+          {
+            foreground: "efac32",
+            token: "entity.name.function",
+          },
+          {
+            foreground: "efac32",
+            token: "keyword.other.name-of-parameter.objc",
+          },
+          {
+            foreground: "efac32",
+            fontStyle: "bold",
+            token: "entity.name",
+          },
+          {
+            foreground: "6c99bb",
+            token: "constant.numeric",
+          },
+          {
+            foreground: "7daf9c",
+            token: "variable.language",
+          },
+          {
+            foreground: "7daf9c",
+            token: "variable.other",
+          },
+          {
+            foreground: "6c99bb",
+            token: "constant",
+          },
+          {
+            foreground: "efac32",
+            token: "variable.other.constant",
+          },
+          {
+            foreground: "6c99bb",
+            token: "constant.language",
+          },
+          {
+            foreground: "d9d762",
+            token: "string",
+          },
+          {
+            foreground: "efac32",
+            token: "support.function",
+          },
+          {
+            foreground: "efac32",
+            token: "support.type",
+          },
+          {
+            foreground: "6c99bb",
+            token: "support.constant",
+          },
+          {
+            foreground: "efcb43",
+            token: "meta.tag",
+          },
+          {
+            foreground: "efcb43",
+            token: "declaration.tag",
+          },
+          {
+            foreground: "efcb43",
+            token: "entity.name.tag",
+          },
+          {
+            foreground: "efcb43",
+            token: "entity.other.attribute-name",
+          },
+          {
+            foreground: "ffffff",
+            background: "990000",
+            token: "invalid",
+          },
+          {
+            foreground: "7daf9c",
+            token: "constant.character.escaped",
+          },
+          {
+            foreground: "7daf9c",
+            token: "constant.character.escape",
+          },
+          {
+            foreground: "7daf9c",
+            token: "string source",
+          },
+          {
+            foreground: "7daf9c",
+            token: "string source.ruby",
+          },
+          {
+            foreground: "e6e1dc",
+            background: "144212",
+            token: "markup.inserted",
+          },
+          {
+            foreground: "e6e1dc",
+            background: "660000",
+            token: "markup.deleted",
+          },
+          {
+            background: "2f33ab",
+            token: "meta.diff.header",
+          },
+          {
+            background: "2f33ab",
+            token: "meta.separator.diff",
+          },
+          {
+            background: "2f33ab",
+            token: "meta.diff.index",
+          },
+          {
+            background: "2f33ab",
+            token: "meta.diff.range",
+          },
+        ],
+        colors: {
+          "editor.foreground": "#E6E1C4",
+          "editor.background": "#372725",
+          "editor.selectionBackground": "#16120E",
+          "editor.lineHighlightBackground": "#1F1611",
+          "editorCursor.foreground": "#E6E1C4",
+          "editorWhitespace.foreground": "#42302D",
+        },
+      });
 
-        monaco.editor.setTheme("bird-of-paradise");
-        console.log(monaco.languages.getLanguages().map((lang) => lang.id));
+      monaco.editor.setTheme("bird-of-paradise");
+      console.log(monaco.languages.getLanguages().map((lang) => lang.id));
 
-        let languages = monaco.languages.getLanguages().map((lang) => lang.id);
+      let languages = monaco.languages.getLanguages().map((lang) => lang.id);
 
-        languages = [
-          "c",
-          "cpp",
-          "css",
-          "dockerfile",
-          "go",
-          "html",
-          "javascript",
-          "json",
-          "lua",
-          "markdown",
-          "objective-c",
-          "pgsql",
-          "pug",
-          "rust",
-          "shell",
-          "typescript",
-          "yaml",
-        ];
+      languages = [
+        "c",
+        "cpp",
+        "css",
+        "dockerfile",
+        "go",
+        "html",
+        "javascript",
+        "json",
+        "lua",
+        "markdown",
+        "objective-c",
+        "pgsql",
+        "pug",
+        "rust",
+        "shell",
+        "typescript",
+        "yaml",
+      ];
 
-        for (let lang of languages) {
-          let option = document.createElement("option");
-          option.setAttribute("label", lang);
-          option.setAttribute("value", lang);
-          if (lang == "javascript") {
-            option.setAttribute("selected", "true");
-          }
-          language_dropdown.appendChild(option);
+      for (let lang of languages) {
+        let option = document.createElement("option");
+        option.setAttribute("label", lang);
+        option.setAttribute("value", lang);
+        if (lang == "javascript") {
+          option.setAttribute("selected", "true");
+        }
+        language_dropdown.appendChild(option);
+      }
+
+      language_dropdown.addEventListener("change", (e) => {
+        let existing_value = this._getEditorValue();
+        const currentModel = this.editor.getModel();
+
+        if (currentModel) {
+          currentModel.dispose();
         }
 
-        language_dropdown.addEventListener("change", (e) => {
-          let existing_value = this._getEditorValue();
-          const currentModel = this.editor.getModel();
+        this.editor.setModel(
+          monaco.editor.createModel(existing_value, e.target.value)
+        );
+      });
 
-          if (currentModel) {
-            currentModel.dispose();
-          }
-
-          this.editor.setModel(
-            monaco.editor.createModel(existing_value, e.target.value)
-          );
-        });
-
-        // Editor
-        this.editor = monaco.editor.create(editor, {
-          theme: "bird-of-paradise",
-          model: monaco.editor.createModel(
-            this.getAttribute("value"),
-            this.getAttribute("language")
-          ),
-          minimap: {
-            enabled: false,
-          },
-          wordWrap: "on",
-          fontSize: 18,
-          lineNumbers: "off",
-          folding: false,
-          contextmenu: false,
-          automaticLayout: true,
-          hover: {
-            enabled: false,
-          },
-          /*
+      // Editor
+      this.editor = monaco.editor.create(editor, {
+        theme: "bird-of-paradise",
+        model: monaco.editor.createModel(
+          this.getAttribute("value"),
+          this.getAttribute("language")
+        ),
+        minimap: {
+          enabled: false,
+        },
+        wordWrap: "on",
+        fontSize: 18,
+        lineNumbers: "off",
+        folding: false,
+        contextmenu: false,
+        automaticLayout: true,
+        hover: {
+          enabled: false,
+        },
+        /*
 					  scrollbar: {
 							handleMouseWheel: false,
 						},
 						*/
-          fontFamily: "var(--font-code)",
-        });
+        fontFamily: "var(--font-code)",
       });
+      //});
 
       window.removeEventListener("load", init);
     };
