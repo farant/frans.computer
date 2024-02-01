@@ -291,7 +291,7 @@ export default async (sourceHtml, options = {}) => {
         clearInterval(key);
         resolve();
       }
-    }, 100);
+    }, 25);
   });
 
   let minify = window.require("html-minifier").minify;
