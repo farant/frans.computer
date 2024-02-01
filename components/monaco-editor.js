@@ -341,6 +341,14 @@ class MonacoEditor extends HTMLElement {
     }
   }
 
+  get_initial_value() {
+    if (this.hasAttribute("value")) {
+      return this.getAttribute("value");
+    } else {
+      return this.innerHTML.trim() || "";
+    }
+  }
+
   _getEditorValue() {
     if (this.editor) {
       return this.editor.getModel().getValue();
