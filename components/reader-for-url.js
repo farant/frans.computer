@@ -142,6 +142,8 @@ class ReaderForUrl extends HTMLElement {
     let highlights = this.load_saved_highlights(this.getAttribute("url"));
     highlights = highlights.reverse();
 
+    let markup = "";
+
     if (this.pending_highlight) {
       markup += `<div class="pending-highlight">
         <div class="pending-highlight-text">${this.escape_html(
@@ -151,7 +153,7 @@ class ReaderForUrl extends HTMLElement {
       </div>`;
     }
 
-    let markup = `<div class="saved-highlights">`;
+    markup += `<div class="saved-highlights">`;
     for (let highlight of highlights) {
       markup += `<div class="saved-highlight">${this.escape_html(
         highlight
