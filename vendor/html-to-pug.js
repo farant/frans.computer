@@ -2,7 +2,12 @@ import {
   parse,
   parseFragment,
 } from "https://cdn.jsdelivr.net/npm/parse5@7.1.2/+esm";
-import {} from "./test.js";
+
+let script = document.createElement("script");
+script.src = "https://kangax.github.io/html-minifier/dist/htmlminifier.min.js";
+document.head.appendChild(script);
+
+window.minify = window.require("html-minifier").minify;
 
 let minify = window.minify;
 
