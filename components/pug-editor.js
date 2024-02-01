@@ -1,4 +1,4 @@
-import HtmlToPug from "../vendor/html-to-pug.js";
+import HtmlToPug from "../vendor/html-to-pug.mjs";
 
 class PugEditor extends HTMLElement {
   constructor() {
