@@ -1,8 +1,11 @@
+import * as monaco from "https://cdn.jsdelivr.net/npm/monaco-editor@0.39.0/+esm";
+
 let monaco_cdn_script =
   "https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs/loader.min.js";
 let monaco_cdn_css =
   "https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs/editor/editor.main.min.css";
 
+/*
 let script_tag = document.createElement("script");
 script_tag.src = monaco_cdn_script;
 document.head.appendChild(script_tag);
@@ -18,6 +21,7 @@ require.config({
     vs: "https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs",
   },
 });
+*/
 
 class MonacoEditor extends HTMLElement {
   // attributeChangedCallback will be called when the value of one of these attributes is changed in html
