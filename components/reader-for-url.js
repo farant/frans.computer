@@ -46,6 +46,10 @@ reader_for_url_css.replace(`
 .saved-highlights {
     margin-bottom: 1em;
 }
+
+.pending-highlight {
+    margin-bottom: 1em;
+}
 `);
 
 const reader_for_url_html = document.createElement("template");
