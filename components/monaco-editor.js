@@ -304,7 +304,7 @@ class MonacoEditor extends HTMLElement {
       this.editor = monaco.editor.create(editor, {
         theme: "bird-of-paradise",
         model: monaco.editor.createModel(
-          this.getAttribute("value"),
+          this.get_initial_value(),
           this.getAttribute("language")
         ),
         minimap: {
