@@ -9,22 +9,37 @@ pre[is=syntax-highlighting] > pre {
 `;
 document.head.appendChild(syntax_highlighting_style);
 
+let saved_syntax_highlighting = {};
+
 class SyntaxHighlighting extends HTMLPreElement {
-  constructor() {
-    super();
-    this.style.display = "none";
-  }
+	constructor() {
+		super();
+		this.style.display = "none";
+	}
 
-  async connectedCallback() {
-    this.innerHTML = await codeToHtml(dedent(this.innerHTML.trim()), {
-      lang: this.getAttribute("lang") || "js",
-      theme: "solarized-light",
-    });
+	async connectedCallback() {
+		let code = dedent(this.innerHTML.trim());
+		let language = this.getAttribute("lang") || "js";
+		let highlighted = "";
+		let cache_key = `${language}:${code}`;
 
-    this.style.display = "block";
-  }
+		if (saved_syntax_highlighting[cache_key]) {
+			highlighted = saved_syntax_highlighting[cache_key];
+		} else {
+			highlighted = await codeToHtml(code, {
+				lang: language,
+				theme: "solarized-light",
+			});
+
+			saved_syntax_highlighting[cache_key] = highlighted;
+		}
+
+		this.innerHTML = highlighted;
+
+		this.style.display = "block";
+	}
 }
 
 window.customElements.define("syntax-highlighting", SyntaxHighlighting, {
-  extends: "pre",
+	extends: "pre",
 });
