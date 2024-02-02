@@ -56,6 +56,26 @@
 								this.selectionStart = this.selectionEnd =
 									start + 2;
 							}
+
+							if (e.key === "Enter" && !e.shiftKey) {
+								e.preventDefault();
+								const cursor_position = this.selectionStart;
+								const lines = this.value.split("\n");
+								const current_line_number =
+									this.value
+										.substr(0, cursor_position)
+										.split("\n").length - 1;
+								const current_line = lines[current_line_number];
+								const indent = current_line.match(/^\s*/) || "";
+
+								const insert_text = "\n" + indent;
+								this.value =
+									this.value.slice(0, cursor_position) +
+									insert_text +
+									this.value.slice(this.selectionEnd);
+								this.selectionEnd =
+									cursor_position + insert_text.length;
+							}
 						}
 					);
 
@@ -70,7 +90,36 @@
 						}
 					);
 
+					const center_cursor = () => {
+						var text_area = this.scoped_selector("repl-input");
+						var line_index =
+							text_area.value
+								.substr(0, text_area.selectionStart)
+								.split("\n").length - 1;
+						var line_height =
+							text_area.scrollHeight /
+							text_area.value.split("\n").length;
+						text_area.scrollTop =
+							line_index * line_height -
+							text_area.clientHeight / 2;
+					};
+
+					this.scoped_selector("repl-input").addEventListener(
+						"input",
+						center_cursor
+					);
+					this.scoped_selector("repl-input").addEventListener(
+						"click",
+						center_cursor
+					);
+					this.scoped_selector("repl-input").addEventListener(
+						"keyup",
+						center_cursor
+					);
+
 					this.load();
+
+					center_cursor();
 				}
 
 				scoped_selector(class_name) {
@@ -104,14 +153,6 @@
 								cursor_position,
 								cursor_position
 							);
-
-							// Ensure the scroll position is centered on the cursor
-							const lineHeight =
-								repl_input.scrollHeight / repl_input.rows;
-							const linesAbove =
-								repl_input.selectionStart / repl_input.cols;
-							repl_input.scrollTop =
-								(linesAbove - repl_input.rows / 2) * lineHeight;
 						}
 					}
 
