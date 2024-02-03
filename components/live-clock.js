@@ -1,8 +1,6 @@
 const live_clock_css = new CSSStyleSheet();
 live_clock_css.replaceSync(`
 .clock-output {
-    font-family: monospace;
-    color: blue;
 }
 `);
 

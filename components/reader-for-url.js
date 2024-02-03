@@ -70,119 +70,136 @@ reader_for_url_html.innerHTML = `
 `;
 
 class ReaderForUrl extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: "open" });
-    this.shadowRoot.adoptedStyleSheets = [reader_for_url_css];
-    this.shadowRoot.appendChild(reader_for_url_html.content.cloneNode(true));
-    this.unique_id = nanoid();
-    console.log({ id: this.unique_id });
-  }
+	constructor() {
+		super();
+		this.attachShadow({ mode: "open" });
+		this.shadowRoot.adoptedStyleSheets = [reader_for_url_css];
+		this.shadowRoot.appendChild(
+			reader_for_url_html.content.cloneNode(true)
+		);
+		this.unique_id = nanoid();
+		this.show_highlights = this.getAttribute("hide-highlights") !== "true";
 
-  load_saved_highlights(url) {
-    let highlights = [];
-    try {
-      let saved = JSON.parse(localStorage.getItem(`highlights:${url}`));
-      if (saved) {
-        highlights = saved;
-      }
-    } catch (e) {
-      console.error(e);
-    }
+		console.log({ id: this.unique_id });
+	}
 
-    this.highlights = highlights;
+	load_saved_highlights(url) {
+		if (!this.show_highlights) return;
+		let highlights = [];
+		try {
+			let saved = JSON.parse(localStorage.getItem(`highlights:${url}`));
+			if (saved) {
+				highlights = saved;
+			}
+		} catch (e) {
+			console.error(e);
+		}
 
-    return highlights;
-  }
+		this.highlights = highlights;
 
-  save_highlight(url, text) {
-    let highlights = this.load_saved_highlights(url);
-    highlights.push(text);
-    localStorage.setItem(`highlights:${url}`, JSON.stringify(highlights));
-    this.load_saved_highlights(url);
-  }
+		return highlights;
+	}
 
-  async connectedCallback() {
-    let url = this.getAttribute("url");
-    let api_url = this.getAttribute("api-url");
+	save_highlight(url, text) {
+		let highlights = this.load_saved_highlights(url);
+		highlights.push(text);
+		localStorage.setItem(`highlights:${url}`, JSON.stringify(highlights));
+		this.load_saved_highlights(url);
+	}
 
-    this.shadowRoot.querySelector(
-      "#reader-for-url"
-    ).innerHTML = `Reader for ${url}`;
+	async connectedCallback() {
+		let url = this.getAttribute("url");
+		let api_url = this.getAttribute("api-url");
 
-    if (!api_url || !url) {
-      return console.error("Missing required attributes", { api_url, url });
-    }
-    let uri_encoded = encodeURIComponent(url);
+		this.shadowRoot.querySelector(
+			"#reader-for-url"
+		).innerHTML = `Reader for ${url}`;
 
-    let markup = await (await fetch(`${api_url}?url=${uri_encoded}`)).text();
+		if (!api_url || !url) {
+			return console.error("Missing required attributes", {
+				api_url,
+				url,
+			});
+		}
+		let uri_encoded = encodeURIComponent(url);
 
-    let existing_element = document.getElementById(this.unique_id);
-    if (existing_element) {
-      existing_element.remove();
-    }
-    let new_element = document.createElement("div");
-    new_element.id = this.unique_id;
-    new_element.innerHTML = markup;
-    this.after(new_element);
+		let markup = await (
+			await fetch(`${api_url}?url=${uri_encoded}`)
+		).text();
 
-    console.log(new_element);
+		let existing_element = document.getElementById(this.unique_id);
+		if (existing_element) {
+			existing_element.remove();
+		}
+		let new_element = document.createElement("div");
+		new_element.id = this.unique_id;
+		new_element.innerHTML = markup;
+		this.after(new_element);
 
-    document.getElementById(this.unique_id).addEventListener("mouseup", () => {
-      let selection = window.getSelection();
+		console.log(new_element);
 
-      this.pending_highlight = selection.toString();
-      this.render_highlights();
-    });
+		if (!this.show_highlights) return;
 
-    this.render_highlights();
-  }
+		document
+			.getElementById(this.unique_id)
+			.addEventListener("mouseup", () => {
+				let selection = window.getSelection();
 
-  escape_html(unsafe) {
-    return unsafe
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
+				this.pending_highlight = selection.toString();
+				this.render_highlights();
+			});
 
-  render_highlights() {
-    let highlights = this.load_saved_highlights(this.getAttribute("url"));
-    highlights = highlights.reverse();
+		this.render_highlights();
+	}
 
-    let markup = "";
+	escape_html(unsafe) {
+		return unsafe
+			.replace(/&/g, "&amp;")
+			.replace(/</g, "&lt;")
+			.replace(/>/g, "&gt;")
+			.replace(/"/g, "&quot;")
+			.replace(/'/g, "&#039;");
+	}
 
-    if (this.pending_highlight) {
-      markup += `<div class="pending-highlight">
+	render_highlights() {
+		let highlights = this.load_saved_highlights(this.getAttribute("url"));
+		highlights = highlights.reverse();
+
+		let markup = "";
+
+		if (this.pending_highlight) {
+			markup += `<div class="pending-highlight">
         <div class="pending-highlight-text">${this.escape_html(
-          this.pending_highlight
-        )}</div>
+			this.pending_highlight
+		)}</div>
         <div><button>Save</button></div>
       </div>`;
-    }
+		}
 
-    markup += `<div class="saved-highlights">`;
-    for (let highlight of highlights) {
-      markup += `<div class="saved-highlight"><span>${this.escape_html(
-        highlight
-      )}</span></div>`;
-    }
-    markup += `</div>`;
+		markup += `<div class="saved-highlights">`;
+		for (let highlight of highlights) {
+			markup += `<div class="saved-highlight"><span>${this.escape_html(
+				highlight
+			)}</span></div>`;
+		}
+		markup += `</div>`;
 
-    this.shadowRoot.querySelector("#highlights-view").innerHTML = markup;
+		this.shadowRoot.querySelector("#highlights-view").innerHTML = markup;
 
-    if (this.pending_highlight) {
-      let highlight_to_save = this.pending_highlight;
-      this.shadowRoot
-        .querySelector(".pending-highlight button")
-        .addEventListener("click", () => {
-          this.save_highlight(this.getAttribute("url"), highlight_to_save);
-          this.pending_highlight = null;
-          this.render_highlights();
-        });
-    }
-  }
+		if (this.pending_highlight) {
+			let highlight_to_save = this.pending_highlight;
+			this.shadowRoot
+				.querySelector(".pending-highlight button")
+				.addEventListener("click", () => {
+					this.save_highlight(
+						this.getAttribute("url"),
+						highlight_to_save
+					);
+					this.pending_highlight = null;
+					this.render_highlights();
+				});
+		}
+	}
 }
 
 window.customElements.define("reader-for-url", ReaderForUrl);
