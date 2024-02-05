@@ -1,183 +1,186 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Hypermedia and whatnot</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://frans.computer/components.js" type="module"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Yrsa:ital,wght@0,300..700;1,300..700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body style="background-color: #f0e9d2">
-    <link rel="stylesheet" href="/autoformat-fragile-styles.css" />
-    <style>
-      body {
-        background-image: url(/images/tile_amethyst6.png);
-        background-size: 70%;
-        padding-top: 10em;
-        padding-bottom: 10em;
-        font-family: Yrsa, serif;
-      }
+	<head>
+		<title>Hypermedia and whatnot</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script
+			src="https://frans.computer/components.js"
+			type="module"
+		></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Yrsa:ital,wght@0,300..700;1,300..700&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body style="background-color: #f0e9d2">
+		<link rel="stylesheet" href="/autoformat-fragile-styles.css" />
+		<style>
+			body {
+				background-image: url(/images/tile_amethyst6.png);
+				background-size: 70%;
+				padding-top: 10em;
+				padding-bottom: 10em;
+				font-family: Yrsa, serif;
+			}
 
-      body::-webkit-scrollbar {
-        display: none;
-      }
+			body::-webkit-scrollbar {
+				display: none;
+			}
 
-      h1,
-      h2,
-      h3 {
-        font-family: "IM Fell English", serif;
-      }
+			h1,
+			h2,
+			h3 {
+				font-family: "IM Fell English", serif;
+			}
 
-      @font-face {
-        font-family: "CozetteVector";
-        src: url("/fonts/cozette-vector.woff") format("woff");
-      }
+			@font-face {
+				font-family: "CozetteVector";
+				src: url("/fonts/cozette-vector.woff") format("woff");
+			}
 
-      pre,
-      code {
-        font-family: CozetteVector, monospace;
-      }
+			pre,
+			code {
+				font-family: CozetteVector, monospace;
+			}
 
-      .post {
-        background-color: #f0e9d2fc;
-        min-width: 50ch;
-        max-width: 60ch;
-        padding: 1em 2em;
-        margin-left: 1em;
-        border: 5px solid #c2b697;
-      }
+			.post {
+				background-color: #f0e9d2fc;
+				min-width: 50ch;
+				max-width: 60ch;
+				padding: 1em 2em;
+				margin-left: 1em;
+				border: 5px solid #c2b697;
+			}
 
-      @media (max-width: 700px) {
-        .post {
-          font-size: 0.8em;
-        }
-      }
+			@media (max-width: 700px) {
+				.post {
+					font-size: 0.8em;
+				}
+			}
 
-      code {
-        background-color: #fdf6e3;
-        display: inline-block;
-        padding: 0px 5px;
-        border-radius: 3px;
-        color: #596e75;
-      }
+			code {
+				background-color: #fdf6e3;
+				display: inline-block;
+				padding: 0px 5px;
+				border-radius: 3px;
+				color: #596e75;
+			}
 
-      .author {
-        font-style: italic;
-        opacity: 0.4;
-      }
-    </style>
-    <div style="display: none">
-      <entity-collection id="components" type="component">
-        <entity-data>
-          <name>&lt;editable-markdown&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;theme-definition&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;searchable-table&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;event-timeline&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;inputs-for-entity&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;command-palette&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;sitemap-overlay&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;state-machine&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;llm-prompt&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;youtube-video&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;map-with-pin&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;command-action&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;sound-effect&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;horizontal-pages&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;theme-builder&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;scribble-pad&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;sentence-reader&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;pdf-reader&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;epub-reader&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;git-repo-browser&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;file-annotator&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;dag-view&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;web-component-help&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;day-timer&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;calendar-view&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;monaco-editor&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;scheduled-reminder&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;read-model&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;group-by-date&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;group-by-field&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;if-type&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;pug-editor&gt;</name>
-        </entity-data>
-        <entity-data>
-          <name>&lt;entity-collection-ref&gt;</name>
-        </entity-data>
-      </entity-collection>
-      <entity-collection id="posts" type="post">
-        <entity-data>
-            <title>Generic Hypermedia Server</title>
-            <author>Fran</author>
-            <date>2024-02-05 10:41:05</title>
-            <pre is="content">
+			.author {
+				font-style: italic;
+				opacity: 0.4;
+			}
+		</style>
+		<div style="display: none">
+			<entity-collection id="components" type="component">
+				<entity-data>
+					<name>&lt;editable-markdown&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;theme-definition&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;searchable-table&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;event-timeline&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;inputs-for-entity&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;command-palette&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;sitemap-overlay&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;state-machine&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;llm-prompt&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;youtube-video&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;map-with-pin&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;command-action&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;sound-effect&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;horizontal-pages&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;theme-builder&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;scribble-pad&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;sentence-reader&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;pdf-reader&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;epub-reader&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;git-repo-browser&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;file-annotator&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;dag-view&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;web-component-help&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;day-timer&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;calendar-view&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;monaco-editor&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;scheduled-reminder&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;read-model&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;group-by-date&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;group-by-field&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;if-type&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;pug-editor&gt;</name>
+				</entity-data>
+				<entity-data>
+					<name>&lt;entity-collection-ref&gt;</name>
+				</entity-data>
+			</entity-collection>
+			<entity-collection id="posts" type="post">
+				<entity-data>
+					<title>Generic Hypermedia Server</title>
+					<author>Fran</author>
+					<date>2024-02-05 10:41:05</date>
+					<pre is="content">
                 So I'm thinking about the features that would be an MVP
                 for a generic hypermedia server. There are actually two
                 scenarios here: one is when the server is running locally
@@ -199,13 +202,14 @@
                   an authorization layer so that you can make pages that are
                   only accessible to certain people
                 * PDF building?
-            </pre>
-        </entity-data>
-        <entity-data>
-          <title>Random idea</title>
-          <author>Fran</author>
-          <date>2024-01-31 13:09:49</date>
-          <pre is="content">
+            </pre
+					>
+				</entity-data>
+				<entity-data>
+					<title>Random idea</title>
+					<author>Fran</author>
+					<date>2024-01-31 13:09:49</date>
+					<pre is="content">
             It would be cool to have some kind of workflow where you could capture
             a page and then save a version of it with highlights added. 
 
@@ -217,14 +221,15 @@
               api-url="http://localhost:1323/readable"&gt;
             &lt;/reader-for-url&gt;
             ```
-          </pre>
-        </entity-data>
-        <entity-data>
-          <title>Web component root class</title>
-          <author>Fran</author>
-          <date>2024-01-31 09:09:00</date>
-          <pic>/images/illustrations/software-steampunk.png</pic>
-          <pre is="content">
+          </pre
+					>
+				</entity-data>
+				<entity-data>
+					<title>Web component root class</title>
+					<author>Fran</author>
+					<date>2024-01-31 09:09:00</date>
+					<pic>/images/illustrations/software-steampunk.png</pic>
+					<pre is="content">
             So right now there are parts of the web component lifecycle that are pretty
             flakey. 
 
@@ -258,27 +263,29 @@
             data from the DOM then children / leaf elements need to update first (especially
             if their data changes in any way) and then the re-render should bubble up
             through parent components.
-          </pre>
-        </entity-data>
-        <entity-data>
-          <title>Oh Safari...</title>
-          <author>Fran</author>
-          <date>2024-01-30 09:32:33</date>
-          <plain-screenshot
-            >/images/screenshots/safari-incompatible-with-options.png</plain-screenshot
-          >
-          <pre is="content">
+          </pre
+					>
+				</entity-data>
+				<entity-data>
+					<title>Oh Safari...</title>
+					<author>Fran</author>
+					<date>2024-01-30 09:32:33</date>
+					<plain-screenshot
+						>/images/screenshots/safari-incompatible-with-options.png</plain-screenshot
+					>
+					<pre is="content">
             Bugs I know about web components so far:
             
             * Text selection related events don't work in shadow dom
             * Safari doesn't support `&lt;tag is="component"&gt;` syntax
-          </pre>
-        </entity-data>
-        <entity-data>
-          <title>More cool ideas</title>
-          <author>Fran</author>
-          <date>2024-01-30 00:26:01</date>
-          <pre is="content">
+          </pre
+					>
+				</entity-data>
+				<entity-data>
+					<title>More cool ideas</title>
+					<author>Fran</author>
+					<date>2024-01-30 00:26:01</date>
+					<pre is="content">
             * Some kind of isometric... VRML rooms that you can run around in and place things in.
             * First person rooms with webgl and shaders
             * `&lt;project&gt;` and `&lt;task&gt;` components that can be defined inline and federated 
@@ -289,15 +296,16 @@
             * Some kind of hypercard stack creator/editor
             * A sqlite database browser
             * Event sourcing and read models
-          </pre>
-          <pic>/images/illustrations/gophers.png</pic>
-        </entity-data>
-        <entity-data>
-          <title>Brainstorming on command palette</title>
-          <author>Fran</author>
-          <date>2024-01-29 23:38:59</date>
-          <pic>/images/illustrations/library.png</pic>
-          <pre is="content">
+          </pre
+					>
+					<pic>/images/illustrations/gophers.png</pic>
+				</entity-data>
+				<entity-data>
+					<title>Brainstorming on command palette</title>
+					<author>Fran</author>
+					<date>2024-01-29 23:38:59</date>
+					<pic>/images/illustrations/library.png</pic>
+					<pre is="content">
             I know off the top of my head there are a few things I would want:
 
             * Fuzzy search by command name
@@ -306,14 +314,15 @@
             * Talking to GPT and it choosing a command from the list
             * Possibly keyboard shortcuts or chords for commands
             * Description / help for each command
-          </pre>
-        </entity-data>
-        <entity-data>
-          <title>Possible user stories</title>
-          <author>Fran</author>
-          <date>2024-01-29 22:44:51</date>
-          <pic>/images/illustrations/raccoon-climbing.png</pic>
-          <pre is="content">
+          </pre
+					>
+				</entity-data>
+				<entity-data>
+					<title>Possible user stories</title>
+					<author>Fran</author>
+					<date>2024-01-29 22:44:51</date>
+					<pic>/images/illustrations/raccoon-climbing.png</pic>
+					<pre is="content">
             What are some of the use cases for an ideal database / app repl?
 
             * Different collections of bookmarks, for example YouTube music videos
@@ -330,13 +339,14 @@
             So it seems like what I'm trying to have is a command+space sitemap
             that pops up. I think I would be fairly satisfied with that. Then
             I just add lots of links to the sitemap?
-          </pre>
-        </entity-data>
-        <entity-data>
-          <title>Organizing pages</title>
-          <author>Fran</author>
-          <date>2024-01-29 21:46:08</date>
-          <pre is="content">
+          </pre
+					>
+				</entity-data>
+				<entity-data>
+					<title>Organizing pages</title>
+					<author>Fran</author>
+					<date>2024-01-29 21:46:08</date>
+					<pre is="content">
             Okay, so this is legitimately one of the big questions for me. I do want
             to have a unified model for how to organize and navigate pages. I think
             the one I'm happiest with so far is the desktop and folder model but of
@@ -357,14 +367,15 @@
             * Formats that are tractable to LLM delegation &amp; assistance
             * Bottom-up organic organization over time
             * ???
-          </pre>
-          <pic>/images/illustrations/castle-maze.png</pic>
-        </entity-data>
-        <entity-data>
-          <title>Next stuff</title>
-          <author>Fran</author>
-          <date>2024-01-29 21:32:35</date>
-          <pre is="content">
+          </pre
+					>
+					<pic>/images/illustrations/castle-maze.png</pic>
+				</entity-data>
+				<entity-data>
+					<title>Next stuff</title>
+					<author>Fran</author>
+					<date>2024-01-29 21:32:35</date>
+					<pre is="content">
             Nice! Expanding on the templating languages pretty well. Can do stuff
             like this now:
 
@@ -380,14 +391,15 @@
             It actually would be very cool to add a command palette 🤔
 
             HMMM
-          </pre>
-        </entity-data>
-        <entity-data>
-          <title>What next?</title>
-          <author>Fran</author>
-          <date>2024-01-29 20:12:59</date>
-          <no-border-pic>/images/memes/lotr-vs-hp.png</no-border-pic>
-          <pre is="content">
+          </pre
+					>
+				</entity-data>
+				<entity-data>
+					<title>What next?</title>
+					<author>Fran</author>
+					<date>2024-01-29 20:12:59</date>
+					<no-border-pic>/images/memes/lotr-vs-hp.png</no-border-pic>
+					<pre is="content">
             Well, this is working pretty well actually!
 
             What are my next priorities?
@@ -397,88 +409,92 @@
             * `sort-by-date-asc` and `sort-by-date-desc` properties for `&lt;render-entity-collection&gt;`
             * ✅ Also want to add `&lt;if-field&gt;` component for conditional rendering
             * ✅ In this case I probably want to have a `field-value:my-field` kind of attribute so that I can use it for img srcs and stuff
-          </pre>
-        </entity-data>
-        <entity-link src="/old-posts.html"></entity-link>
-      </entity-collection>
-    </div>
+          </pre
+					>
+				</entity-data>
+				<entity-link src="/old-posts.html"></entity-link>
+			</entity-collection>
+		</div>
 
-    <div class="post" style="margin-bottom: 5em">
-      <h2 style="display: flex; justify-content: space-between">
-        Component TODO
-        <div
-          style="
-            display: inline-block;
-            font-family: CozetteVector;
-            opacity: 0.3;
-          "
-        >
-          <live-clock></live-clock>
-        </div>
-      </h2>
-      <div class="post-body" style="max-width: 60ch">
-        <ol style="column-count: 2; column-gap: 3em">
-          <render-entity-collection for="components" sort-by="name">
-            <li style="white-space: nowrap">
-              <code><field>name</field></code>
-            </li>
-          </render-entity-collection>
-        </ol>
-      </div>
-    </div>
+		<div class="post" style="margin-bottom: 5em">
+			<h2 style="display: flex; justify-content: space-between">
+				Component TODO
+				<div
+					style="
+						display: inline-block;
+						font-family: CozetteVector;
+						opacity: 0.3;
+					"
+				>
+					<live-clock></live-clock>
+				</div>
+			</h2>
+			<div class="post-body" style="max-width: 60ch">
+				<ol style="column-count: 2; column-gap: 3em">
+					<render-entity-collection for="components" sort-by="name">
+						<li style="white-space: nowrap">
+							<code><field>name</field></code>
+						</li>
+					</render-entity-collection>
+				</ol>
+			</div>
+		</div>
 
-    <render-entity-collection for="posts">
-      <rotate-jitter range="1.2">
-        <div class="post" style="margin-bottom: 5em">
-          <h2>
-            <field>title</field>
-            <span class="author">by <field>author</field></span>
-          </h2>
-          <div class="post-date">
-            <em>
-              <format-date><field>date</field></format-date>
-            </em>
-          </div>
-          <if-field field="no-border-pic">
-            <div
-              style="
-                max-width: 400px;
-                border-radius: 20px;
-                overflow: hidden;
-                margin-top: 1em;
-              "
-            >
-              <dithered-image
-                src="field-value:no-border-pic"
-                border="false"
-              ></dithered-image>
-            </div>
-          </if-field>
-          <if-field field="pic">
-            <div
-              style="
-                max-width: 400px;
-                border-radius: 20px;
-                overflow: hidden;
-                margin-top: 1em;
-              "
-            >
-              <dithered-image
-                src="field-value:pic"
-                border="true"
-              ></dithered-image>
-            </div>
-          </if-field>
-          <div class="post-body" style="max-width: 60ch">
-            <pre is="markdown-view"><field>content</field></pre>
-          </div>
-          <if-field field="plain-screenshot">
-            <div style="max-width: 400px; margin-top: 1em">
-              <img style="max-width: 100%" src="field-value:plain-screenshot" />
-            </div>
-          </if-field>
-        </div>
-      </rotate-jitter>
-    </render-entity-collection>
-  </body>
+		<render-entity-collection for="posts">
+			<rotate-jitter range="1.2">
+				<div class="post" style="margin-bottom: 5em">
+					<h2>
+						<field>title</field>
+						<span class="author">by <field>author</field></span>
+					</h2>
+					<div class="post-date">
+						<em>
+							<format-date><field>date</field></format-date>
+						</em>
+					</div>
+					<if-field field="no-border-pic">
+						<div
+							style="
+								max-width: 400px;
+								border-radius: 20px;
+								overflow: hidden;
+								margin-top: 1em;
+							"
+						>
+							<dithered-image
+								src="field-value:no-border-pic"
+								border="false"
+							></dithered-image>
+						</div>
+					</if-field>
+					<if-field field="pic">
+						<div
+							style="
+								max-width: 400px;
+								border-radius: 20px;
+								overflow: hidden;
+								margin-top: 1em;
+							"
+						>
+							<dithered-image
+								src="field-value:pic"
+								border="true"
+							></dithered-image>
+						</div>
+					</if-field>
+					<div class="post-body" style="max-width: 60ch">
+						<pre is="markdown-view"><field>content</field></pre>
+					</div>
+					<if-field field="plain-screenshot">
+						<div style="max-width: 400px; margin-top: 1em">
+							<img
+								style="max-width: 100%"
+								src="field-value:plain-screenshot"
+							/>
+						</div>
+					</if-field>
+				</div>
+			</rotate-jitter>
+		</render-entity-collection>
+	</body>
 </html>
