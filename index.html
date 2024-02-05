@@ -174,6 +174,34 @@
       </entity-collection>
       <entity-collection id="posts" type="post">
         <entity-data>
+            <title>Generic Hypermedia Server</title>
+            <author>Fran</author>
+            <date>2024-02-05 10:41:05</title>
+            <pre is="content">
+                So I'm thinking about the features that would be an MVP
+                for a generic hypermedia server. There are actually two
+                scenarios here: one is when the server is running locally
+                on your computer, the other is when it's running remotely
+                on the public internet.
+
+                Functionalities should be very generic, as much as possible
+                configuration and application logic should come from
+                the HTML page consuming the server itself.
+
+                Possible resources:
+                * Mutating HTML files on the filesystem
+                * Uploading files
+                * Querying ChatGPT
+                * Do HTML transformations of pages that will be blocked for
+                  CORS reasons, such as creating a reader view of a page
+                * Mutating entities or events in a central database
+                * Acting as a proxy for HTML pages that can provide
+                  an authorization layer so that you can make pages that are
+                  only accessible to certain people
+                * PDF building?
+            </pre>
+        </entity-data>
+        <entity-data>
           <title>Random idea</title>
           <author>Fran</author>
           <date>2024-01-31 13:09:49</date>
