@@ -16,4 +16,5 @@ import {} from "./components/live-clock.js";
 import {} from "./components/reader-for-url.js";
 import {} from "./components/monaco-editor.js";
 import {} from "./components/pug-editor.js";
+import {} from "./components/hypermedia-repl.js";
 //import {} from "./components/llm-prompt.js";
