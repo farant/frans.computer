@@ -22,28 +22,31 @@ entity_data_html.innerHTML = `
 `;
 
 class EntityData extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: "open" });
-    this.shadowRoot.adoptedStyleSheets = [entity_data_css];
-    this.shadowRoot.appendChild(entity_data_html.content.cloneNode(true));
-  }
+	constructor() {
+		super();
+		this.attachShadow({ mode: "open" });
+		this.shadowRoot.adoptedStyleSheets = [entity_data_css];
+		this.shadowRoot.appendChild(entity_data_html.content.cloneNode(true));
+	}
 
-  get_data() {
-    let data = {};
+	get_data() {
+		let data = {};
 
-    let slot = this.shadowRoot.querySelector("slot");
-    slot.assignedElements().forEach((element) => {
-      let name = element.tagName;
-      if (element.hasAttribute("is")) name = element.getAttribute("is");
+		let slot = this.shadowRoot.querySelector("slot");
+		slot.assignedElements().forEach((element) => {
+			let name = element.tagName;
+			if (element.hasAttribute("is")) name = element.getAttribute("is");
 
-      name = name.toLowerCase();
+			name = name.toLowerCase();
 
-      data[name] = element.textContent;
-    });
+			data[name] = element.textContent;
+			if (element.tagName === "TEMPLATE" && element.hasAttribute("is")) {
+				data[name] = element.innerHTML;
+			}
+		});
 
-    return data;
-  }
+		return data;
+	}
 }
 
 window.customElements.define("entity-data", EntityData);
